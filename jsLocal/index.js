@@ -1317,6 +1317,7 @@ $(document).ready(function() {
             .then(function(response) {
                 if (response.data.errno != undefined) {
                     // ERR
+                    $('#modalFullCoverLoader').hide();
                 } else {
 
                     var data_TASK_GROUP_DETAIL = response.data[1];
@@ -1366,7 +1367,7 @@ $(document).ready(function() {
 
                 } // end else SUCCESS
 
-                $('#modalFullCoverLoader').hide();
+
             })
             .catch(function(error) {
                 $('#modalFullCoverLoader').hide();
@@ -1549,6 +1550,8 @@ $(document).ready(function() {
             var adddressInFo = $(this);
             HandleClickOnTaskDetail(adddressInFo);
         });
+
+        $('#modalFullCoverLoader').hide();
     }
 
     // call in ShowGrpTaskAndTaskDetail
