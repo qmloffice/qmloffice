@@ -1279,6 +1279,8 @@ $(document).ready(function() {
 
     // call in $(".list-group-item-action").click(function(e)
     function HandleClickOn_Each_Title(li_item) {
+
+        $('#modalFullCoverLoader').show();
         $("#div_list_title_in_one_folder")
             .find("ul li")
             .each(function() {
@@ -1313,7 +1315,7 @@ $(document).ready(function() {
                 },
             })
             .then(function(response) {
-                if (response.errno != undefined) {
+                if (response.data.errno != undefined) {
                     // ERR
                 } else {
 
@@ -1363,9 +1365,11 @@ $(document).ready(function() {
 
 
                 } // end else SUCCESS
+
+                $('#modalFullCoverLoader').hide();
             })
             .catch(function(error) {
-                console.log(error);
+                $('#modalFullCoverLoader').hide();
             });
 
         // tab_showtask
