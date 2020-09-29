@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <!-- width=device-width -->
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>DETAIL</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" href="css/mdb.min.css" />
+    <!-- Your custom styles (optional) -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/style_detail.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+
+    <!-- RichtextEditor add comment in detail task -->
+    <link rel="stylesheet" href="./jsLocal/Plugin/RichTextEditor/richtext.min.css" />
+</head>
+
+<body>
+
+    <main class="pt-4" style="padding-left: 0px">
+        <div class="text-center green">
+            <h5 id="show_info_user"></h5>
+        </div>
+
+        <div class="modal fade overlay1" id="modalFullCoverLoader" tabindex="-1" role="dialog"
+            aria-labelledby="myModalLabel" aria-hidden="true" style="opacity: 0.6;display: none;">
+            <div class="spinner-grow" style="width: 3rem; height: 3rem;position:fixed; top: 50%; left: 50%;"
+                role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+
+        <!-- Central Modal Delete user Yes/No Start-->
+        <div class="modal fade right" id="modalDelUserYesNo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div id='modal_yes_no_type' class="modal-dialog modal-notify modal-success" role="document">
+                <!--Content-->
+                <div class="modal-content">
+                    <!--Header-->
+                    <div class="modal-header">
+                        <p id='modal_yes_no_Header' class="heading"></p>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="white-text">&times;</span>
+                        </button>
+                    </div>
+
+                    <!--Body-->
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="col-3">
+                                <p></p>
+                                <p id='modal_yes_no_icon' class="text-center">
+                                </p>
+                            </div>
+
+                            <div class="col-9">
+                                <h2 id="del_user_name">Bạn có đồng ý xoá người tham gia này ?</h2>
+                                <!-- <h2><span class="badge">v52gs1</span></h2> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Footer-->
+                    <div class="modal-footer justify-content-center">
+                        <a id="btn_modal_yes_del_user" val_xoa='' userID='' type="button" class="btn btn-danger"
+                            data-dismiss="modal"> CÓ <i class="far fa-gem ml-1 white-text"></i></a>
+                        <a id="btn_modal_no_del_user" type="button" class="btn btn-outline-danger waves-effect"
+                            data-dismiss="modal">KHÔNG</a>
+                    </div>
+                </div>
+                <!--/.Content-->
+            </div>
+        </div>
+        <!-- Central Modal Delete user Yes/No End-->
+
+
+        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+
+            <table id='tab_list_user' class="table table-bordered table-striped mb-0">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Tên</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phân Quyền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>lam quang vinh <a href="#" class="badge badge-success">ĐANG HOẠT ĐỘNG</a></td>
+                        <td>ấđâsdajsadkád@gmail.com1111</td>
+                        <td>
+                            <!-- Material inline 1 -->
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" id="materialInline1_1" name="grp_Radios1">
+                                <label class="form-check-label" for="materialInline1_1">ADMIN</label>
+                            </div>
+
+                            <!-- Material inline 2 -->
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" id="materialInline2_1" name="grp_Radios1">
+                                <label class="form-check-label" for="materialInline2_1">STAFF</label>
+                            </div>
+
+                            <div id="loader_userID" class="spinner-border text-success" role="status"
+                                style=" height: 15px; width: 15px;">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+
+                            <!-- Material inline 3 -->
+                            <button type="button" class="btn btn-danger btn-sm btn-rounded waves-effect waves-light"><i
+                                    class="fas fa-plane pr-2 pt-1" aria-hidden="true"></i>XOÁ</button>
+
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Mark <a href="#" class="badge badge-danger">BỊ XOÁ</a></td>
+                        <td>Otto</td>
+                        <td>
+                            <!-- Material inline 1 -->
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" id="materialInline1_2" name="grp_Radios2">
+                                <label class="form-check-label" for="materialInline1_2">ADMIN</label>
+                            </div>
+
+                            <!-- Material inline 2 -->
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" id="materialInline2_2" name="grp_Radios2">
+                                <label class="form-check-label" for="materialInline2_2">STAFF</label>
+                            </div>
+
+                            <div id="loader_userID" class="spinner-border text-success" role="status"
+                                style=" height: 15px; width: 15px;">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+
+                            <!-- Material inline 3 -->
+                            <button type="button" class="btn btn-danger btn-sm btn-rounded waves-effect waves-light"><i
+                                    class="fas fa-plane pr-2 pt-1" aria-hidden="true"></i>XOÁ</button>
+
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </main>
+
+    <!-- jQuery -->
+    <script type="text/javascript " src="js/jquery.min.js "></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript " src="js/popper.min.js "></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript " src="js/bootstrap.min.js "></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript " src="js/mdb.min.js "></script>
+    <!-- Your add on -->
+    <script type="text/javascript " src="js/jsTree/jstree.min.js "></script>
+    <script type="text/javascript " src="js/addons/jquery.cookie.js "></script>
+    <script type="text/javascript " src="js/addons/jstorage.min.js "></script>
+    <script type="text/javascript " src="js/addons/datatables.min.js "></script>
+    <script type="text/javascript " src="js/addons/axios.min.js "></script>
+    <script type="text/javascript " src="jsLocal/gobalVar.js "></script>
+    <!-- Your custom scripts (optional) -->
+    <script type="text/javascript " src="jsLocal/usermanager.js "></script>
+
+
+</body>
+
+</html>

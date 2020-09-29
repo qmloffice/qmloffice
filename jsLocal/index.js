@@ -1,8 +1,8 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
 
     $("tab_showtask_staff").find("tr:gt(0)").remove();
-    $("#btn_upload_file_test222").click(function(e) {
+    $("#btn_upload_file_test222").click(function (e) {
         var controlFile = $("#input_file_2");
         var cntFile = controlFile.prop("files").length;
 
@@ -33,7 +33,7 @@ $(document).ready(function() {
                     'Content-Type': 'multipart/form-data'
                 }
             })
-            .then(function(response) {
+            .then(function (response) {
                 if (response.data.errno != undefined) {
 
                 } else {
@@ -54,7 +54,7 @@ $(document).ready(function() {
 
 
 
-    $("#input_file_2").on('change', function(event) {
+    $("#input_file_2").on('change', function (event) {
         var controlFile = $("#input_file_2");
         var numberFile = controlFile.prop("files").length;
         var cnt = 0;
@@ -71,7 +71,7 @@ $(document).ready(function() {
         }
     });
 
-    $("#btn_upload_file_test2").click(function(e) {
+    $("#btn_upload_file_test2").click(function (e) {
 
         GF_CheckAccGoogleAvaibleNow(accesstoken);
         var btn = $(this);
@@ -79,7 +79,7 @@ $(document).ready(function() {
 
     });
 
-    $("#btn_upload_file_test22").click(function(e) {
+    $("#btn_upload_file_test22").click(function (e) {
 
         HandleUploadFileAfterCheckExpiresAccesstoken(accesstoken);
 
@@ -98,9 +98,9 @@ $(document).ready(function() {
         // post data
         // in SERVER get data USING :  req.body.data.accesstoken
         axios.post(GV_Server_Address + '/test_file_admin', {
-                data: data,
-            })
-            .then(function(response) {
+            data: data,
+        })
+            .then(function (response) {
                 if (response.data.errno != undefined) {
                     // ERR
                     GF_ShowToastrWarning('Mất kết nối Internet!!');
@@ -111,7 +111,7 @@ $(document).ready(function() {
                 } // }// end else SUCCESS
                 btn.prop("disabled", false);
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 console.log(error);
                 btn.prop("disabled", false);
             });
@@ -127,7 +127,7 @@ $(document).ready(function() {
                     data,
                 },
             })
-            .then(function(response) {
+            .then(function (response) {
                 if (response.errno != undefined) {
                     // ERR
                     location.href = GV_Server_Address + GV_auth_google;
@@ -147,7 +147,7 @@ $(document).ready(function() {
                     }
                 } // }// end else SUCCESS
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 location.href = GV_Server_Address + GV_auth_google;
             });
     }
@@ -173,7 +173,7 @@ $(document).ready(function() {
                     'Content-Type': 'multipart/form-data'
                 }
             })
-            .then(function(response) {
+            .then(function (response) {
                 if (response.data.errno != undefined) {
                     index = numberFile;
                     uploadFile2(controlFile, index, numberFile);
@@ -185,7 +185,7 @@ $(document).ready(function() {
                     uploadFile2(controlFile, index, numberFile);
                 }
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 index = numberFile;
                 uploadFile2(controlFile, index, numberFile);
                 location.href = GV_Server_Address + GV_auth_google;
@@ -246,6 +246,12 @@ $(document).ready(function() {
     if (authority_code != GV_AUT_CODE_MASTER) {
         label_user = '<span class="badge badge-success">STAFF</span>';
     }
+
+    if (authority_code == GV_AUT_CODE_MASTER) {
+        $('#btn_open_uermanager_page').show();
+    }
+
+
 
     $("#show_info_user").html(`QML: Xin Chào ${label_user} ${full_name} (${email})`);
     $("#path_folder").html(`QML: Xin Chào ${full_name} (${email})`);
@@ -349,7 +355,7 @@ $(document).ready(function() {
                     data,
                 },
             })
-            .then(function(response) {
+            .then(function (response) {
                 if (response.data.errno != undefined) {
                     // ERR
                     location.href = GV_Server_Address + GV_auth_google;
@@ -371,12 +377,12 @@ $(document).ready(function() {
                     }
                 } // }// end else SUCCESS
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 location.href = GV_Server_Address + GV_auth_google;
             });
     }
 
-    var setsetIntervalCheckUserIsdeleted = setInterval(function() {
+    var setsetIntervalCheckUserIsdeleted = setInterval(function () {
         CheckUserIsdeleted(id, email);
     }, 10000)
 
@@ -394,7 +400,7 @@ $(document).ready(function() {
                     data,
                 },
             })
-            .then(function(response) {
+            .then(function (response) {
                 if (response.data.errno != undefined) {
                     // ERR
                     location.href = GV_Server_Address + GV_auth_google;
@@ -414,7 +420,7 @@ $(document).ready(function() {
                     }
                 } // }// end else SUCCESS
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 location.href = GV_Server_Address + GV_auth_google;
             });
     }
@@ -430,11 +436,11 @@ $(document).ready(function() {
         // SERVER USING : let dataXXX = JSON.parse(req.query.data);
         // SERVER USING : let id = dataXXX.id;
         axios.get(GV_Server_Address + '/GetAllTaskOfOneUser', {
-                params: {
-                    data,
-                },
-            })
-            .then(function(response) {
+            params: {
+                data,
+            },
+        })
+            .then(function (response) {
                 if (response.errno != undefined) {
                     // ERR
                     GF_ShowToastrWarning('MAT KET NOI INTERNET!!');
@@ -447,7 +453,7 @@ $(document).ready(function() {
 
                     // Get list grp_detail_id Start
                     var cntGrpDtl = 0;
-                    $.each(list_data, function(index, TASK_GROUP_DETAIL) {
+                    $.each(list_data, function (index, TASK_GROUP_DETAIL) {
                         cntGrpDtl++;
                         if (list_data.length == cntGrpDtl) {
                             list_task_grp_dtl_id = list_task_grp_dtl_id + `'${TASK_GROUP_DETAIL.task_grp_detail_id}'`;
@@ -469,7 +475,7 @@ $(document).ready(function() {
                                 data,
                             },
                         })
-                        .then(function(response2) {
+                        .then(function (response2) {
                             if (response2.errno != undefined) {
                                 // ERR
                                 GV_STORE_TASK_GRP_TASK_DETAIL.Notify_By_TaskDtlID_And_userLogin = [];
@@ -484,13 +490,13 @@ $(document).ready(function() {
                                 // assign grp_task_detail to table list grp_task_detail START
                                 var cnt = 0;
                                 var cntNotify = 0;
-                                $.each(list_data, function(index, data) {
+                                $.each(list_data, function (index, data) {
 
                                     if (GV_STORE_TASK_GRP_TASK_DETAIL.Notify_By_TaskDtlID_And_userLogin != undefined &&
                                         GV_STORE_TASK_GRP_TASK_DETAIL.Notify_By_TaskDtlID_And_userLogin.length > 0) {
 
                                         var notify_in_each_detail = [];
-                                        $.each(GV_STORE_TASK_GRP_TASK_DETAIL.Notify_By_TaskDtlID_And_userLogin, function(index, notify) {
+                                        $.each(GV_STORE_TASK_GRP_TASK_DETAIL.Notify_By_TaskDtlID_And_userLogin, function (index, notify) {
                                             if (notify.task_grp_detail_id == data.task_grp_detail_id) {
                                                 notify_in_each_detail.push(notify);
                                             }
@@ -523,7 +529,7 @@ $(document).ready(function() {
                                     $("#tab_showtask_staff tbody").append(template);
 
                                 });
-                                $(".show_task_grp_detail").click(function(e) {
+                                $(".show_task_grp_detail").click(function (e) {
                                     var adddressInFo = $(this);
                                     HandleClickOnTaskDetail(adddressInFo);
                                 });
@@ -531,7 +537,7 @@ $(document).ready(function() {
 
                             } // }// end else SUCCESS
                         })
-                        .catch(function(error) {
+                        .catch(function (error) {
                             console.log(error);
                         });
 
@@ -550,7 +556,7 @@ $(document).ready(function() {
 
                 } // }// end else SUCCESS
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 console.log(error);
             });
 
@@ -597,7 +603,7 @@ $(document).ready(function() {
             data: {},
             parent: "#",
             type: "folder-open",
-        }, ];
+        },];
 
         // data format demo
         $("#" + taskTreeName)
@@ -610,7 +616,7 @@ $(document).ready(function() {
                     //     }
                     // },
                     data: dataNodeTaskRoot,
-                    check_callback: function(o, n, p, i, m) {
+                    check_callback: function (o, n, p, i, m) {
                         // function(operation, node, node_parent, node_position, more)
                         if (m && m.dnd && m.pos !== "i") {
                             return false;
@@ -675,7 +681,7 @@ $(document).ready(function() {
                 },
 
                 contextmenu: {
-                    items: function(node) {
+                    items: function (node) {
                         var tmp = $.jstree.defaults.contextmenu.items();
                         delete tmp.create.action;
                         tmp.create.label = "New";
@@ -683,16 +689,16 @@ $(document).ready(function() {
                             create_folder: {
                                 separator_after: true,
                                 label: "Folder",
-                                action: function(data) {
+                                action: function (data) {
                                     var inst = $.jstree.reference(data.reference),
                                         obj = inst.get_node(data.reference);
                                     inst.create_node(
                                         obj, {
-                                            type: "default",
-                                        },
+                                        type: "default",
+                                    },
                                         "last",
-                                        function(new_node) {
-                                            setTimeout(function() {
+                                        function (new_node) {
+                                            setTimeout(function () {
                                                 inst.edit(new_node);
                                             }, 0);
                                         }
@@ -762,18 +768,18 @@ $(document).ready(function() {
                     // ,'unique'
                 ],
             })
-            .on("open_node.jstree", function(event, data) {
+            .on("open_node.jstree", function (event, data) {
                 data.instance.set_type(data.node, "folder-open");
                 HandleSaveMenuAfterAction("EDITING...");
             })
-            .on("close_node.jstree", function(event, data) {
+            .on("close_node.jstree", function (event, data) {
                 data.instance.set_type(data.node, "folder-close");
                 HandleSaveMenuAfterAction("EDITING...");
             })
-            .on("delete_node.jstree", function(e, data) {
+            .on("delete_node.jstree", function (e, data) {
                 console.log(`delete_node`);
             })
-            .on("create_node.jstree", function(e, data) {
+            .on("create_node.jstree", function (e, data) {
                 console.log(data.node.id);
                 $(this)
                     .jstree(true)
@@ -786,16 +792,16 @@ $(document).ready(function() {
                         data.node.id
                     );
             })
-            .on("rename_node.jstree", function(e, data) {
+            .on("rename_node.jstree", function (e, data) {
                 console.log("rename_node");
             })
-            .on("move_node.jstree", function(e, data) {
+            .on("move_node.jstree", function (e, data) {
                 console.log("move_node");
             })
-            .on("copy_node.jstree", function(e, data) {
+            .on("copy_node.jstree", function (e, data) {
                 console.log("copy_node");
             })
-            .on("changed.jstree", function(e, selectedNode) {
+            .on("changed.jstree", function (e, selectedNode) {
                 HandleClickFolderOnTree(selectedNode);
             });
 
@@ -806,11 +812,11 @@ $(document).ready(function() {
         var to = false;
 
         const txtSearchTree = $("#TaskInputSearch");
-        txtSearchTree.keyup(function() {
+        txtSearchTree.keyup(function () {
             if (to) {
                 clearTimeout(to);
             }
-            to = setTimeout(function() {
+            to = setTimeout(function () {
                 var v = txtSearchTree.val();
                 $("#jstree_div").jstree(true).search(v);
             }, 250);
@@ -827,9 +833,9 @@ $(document).ready(function() {
             data: data,
             contentType: "application/json",
             url: GV_Server_Address + "/getMenuByCreatorID",
-            success: function(data) {
+            success: function (data) {
                 if (data.errno != undefined) {
-                    auto_SaveMenuTaskTree = setInterval(function() {
+                    auto_SaveMenuTaskTree = setInterval(function () {
                         clearInterval(auto_SaveMenuTaskTree);
                         GF_ShowToastrWarning("KHÔNG THỂ TẢI FOLDER TREE TASK");
                         setTimeout(() => {
@@ -847,7 +853,7 @@ $(document).ready(function() {
                         $.jStorage.get(GV_KEY_STORE_TASK_GRP_TASK_DETAIL) != null &&
                         $.jStorage.get(GV_KEY_STORE_TASK_GRP_TASK_DETAIL) != undefined
                     ) {
-                        var setTreeComplete = setInterval(function() {
+                        var setTreeComplete = setInterval(function () {
                             if ($("#jstree_div").jstree(true).settings.core.data.length == 1) {
 
                             } else {
@@ -857,7 +863,7 @@ $(document).ready(function() {
                                 var textP = "";
                                 array_key_store_node = [];
                                 // set color of all parents when back from detail Start
-                                $.each(arr_ID_Parents, function(index, valueID) {
+                                $.each(arr_ID_Parents, function (index, valueID) {
                                     if (valueID == "#") {
                                         return;
                                     }
@@ -884,7 +890,7 @@ $(document).ready(function() {
                                 ShowListTitleWhenClickOnFolder(cur_folderID);
                                 ShowGrpTaskAndTaskDetail();
 
-                                var setsetInterval = setInterval(function() {
+                                var setsetInterval = setInterval(function () {
                                     if ($('#list_title_in_one_folder li').length <= 0) {
                                         // DO NOT CODE HERE
                                     } else {
@@ -892,7 +898,7 @@ $(document).ready(function() {
                                         // code when you need
                                         var li_item = undefined;
                                         var cntthh = 1;
-                                        $('#list_title_in_one_folder li').each(function() {
+                                        $('#list_title_in_one_folder li').each(function () {
                                             var li_Tag = $(this);
                                             if (li_Tag.attr('id') == cur_titleID && cntthh == 1) {
                                                 li_item = $(this);
@@ -910,7 +916,7 @@ $(document).ready(function() {
                     }
                 }
             },
-            error: function(err) {},
+            error: function (err) { },
         });
     }
 
@@ -926,7 +932,7 @@ $(document).ready(function() {
           `
         );
 
-        auto_SaveMenuTaskTree = setInterval(function() {
+        auto_SaveMenuTaskTree = setInterval(function () {
             updateMENUtoDB();
             clearInterval(auto_SaveMenuTaskTree);
         }, 3000);
@@ -955,8 +961,8 @@ $(document).ready(function() {
             data: JSON.stringify(data),
             contentType: "application/json",
             url: GV_Server_Address + "/updatemenuafteraction",
-            success: function(data) {
-                if (data.errno != undefined) {} else {
+            success: function (data) {
+                if (data.errno != undefined) { } else {
                     $("#jstree_div_status").html(`  
                     <button class="btn btn-primary" type="button">
                     <span class="" role="status" aria-hidden="true"></span>
@@ -965,7 +971,7 @@ $(document).ready(function() {
                   `);
                 }
             },
-            error: function(err) {
+            error: function (err) {
                 $("#user_fname").prop("readonly", false);
                 console.log(err);
             },
@@ -985,7 +991,7 @@ $(document).ready(function() {
                     data,
                 },
             })
-            .then(function(response) {
+            .then(function (response) {
                 if (response.data.errno != undefined) {
                     // ERR
                     array_ALL_user = [];
@@ -1001,7 +1007,7 @@ $(document).ready(function() {
                         var d = GetSysDate();
                         var t = GetSysTime();
 
-                        $.each(array_ALL_user, function(index, user) {
+                        $.each(array_ALL_user, function (index, user) {
                             if (user.create_datetime == '' || user.create_datetime == undefined || user.create_datetime == null) {
                                 user.updatedate = d;
                                 user.updatetime = t;
@@ -1017,9 +1023,9 @@ $(document).ready(function() {
                             // post data
                             // in SERVER get data USING :  req.body.data
                             axios.post(GV_Server_Address + '/updateListUserJoinDate', {
-                                    data: data,
-                                })
-                                .then(function(response) {
+                                data: data,
+                            })
+                                .then(function (response) {
                                     if (response.data.errno != undefined) {
 
                                         // ERR
@@ -1039,7 +1045,7 @@ $(document).ready(function() {
                                                     data,
                                                 },
                                             })
-                                            .then(function(response) {
+                                            .then(function (response) {
                                                 if (response.errno != undefined || response.data.errno != undefined) {
                                                     array_ALL_user = [];
                                                     // ERR
@@ -1048,7 +1054,7 @@ $(document).ready(function() {
                                                     array_ALL_user = response.data;
                                                 } // }// end else SUCCESS
                                             })
-                                            .catch(function(error) {
+                                            .catch(function (error) {
                                                 array_ALL_user = [];
                                             });
 
@@ -1058,7 +1064,7 @@ $(document).ready(function() {
 
                                     } // }// end else SUCCESS
                                 })
-                                .catch(function(error) {
+                                .catch(function (error) {
                                     array_ALL_user = [];
                                 });
                         }
@@ -1071,7 +1077,7 @@ $(document).ready(function() {
 
                 } // }// end else SUCCESS
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 array_ALL_user = [];
             });
     }
@@ -1153,7 +1159,7 @@ $(document).ready(function() {
 
             // reset all nodes to black text Start
             if (array_key_store_node.length > 0) {
-                $.each(array_key_store_node, function(index, value) {
+                $.each(array_key_store_node, function (index, value) {
                     $("#" + value).css({
                         color: "black",
                         "background-color": "",
@@ -1166,7 +1172,7 @@ $(document).ready(function() {
             // set color of all parents Start
             cur_pathFolder = "";
 
-            $.each(arr_ID_Parents, function(index, valueID) {
+            $.each(arr_ID_Parents, function (index, valueID) {
                 if (valueID == "#") {
                     return;
                 }
@@ -1175,7 +1181,7 @@ $(document).ready(function() {
                 var cntt = 1;
                 $("#" + valueID)
                     .find("a")
-                    .each(function() {
+                    .each(function () {
                         if (cntt == 1) {
                             cntt++;
                             var aTag = $(this);
@@ -1195,7 +1201,7 @@ $(document).ready(function() {
             var cntt = 1;
             $("#" + selectedNode.node.id)
                 .find("a")
-                .each(function() {
+                .each(function () {
                     if (cntt == 1) {
                         cntt++;
                         var aTag = $(this);
@@ -1244,7 +1250,7 @@ $(document).ready(function() {
                     data,
                 },
             })
-            .then(function(response) {
+            .then(function (response) {
                 if (response.errno != undefined) {
                     // ERR
                     $("#spinner_show_wait_signup_title").delay(1000).hide(0);
@@ -1253,7 +1259,7 @@ $(document).ready(function() {
 
                     var listData = response.data;
                     $("#list_title_in_one_folder").empty();
-                    $.each(listData, function(index, data) {
+                    $.each(listData, function (index, data) {
                         var id = data.id;
 
                         var template = `
@@ -1265,13 +1271,13 @@ $(document).ready(function() {
                     });
 
                     // Set event after create ITEM Active for LI item - Title
-                    $(".list-group-item-action").click(function(e) {
+                    $(".list-group-item-action").click(function (e) {
                         HandleClickOn_Each_Title($(this));
                     });
                     $("#spinner_show_wait_signup_title").delay(1000).hide(0);
                 } // }// end else SUCCESS
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 $("#spinner_show_wait_signup_title").delay(1000).hide(0);
             });
     }
@@ -1283,7 +1289,7 @@ $(document).ready(function() {
         $('#modalFullCoverLoader').show();
         $("#div_list_title_in_one_folder")
             .find("ul li")
-            .each(function() {
+            .each(function () {
                 var LI_item = $(this);
                 LI_item.removeClass("active");
             });
@@ -1314,7 +1320,7 @@ $(document).ready(function() {
                     data,
                 },
             })
-            .then(function(response) {
+            .then(function (response) {
                 if (response.data.errno != undefined) {
                     // ERR
                     $('#modalFullCoverLoader').hide();
@@ -1324,7 +1330,7 @@ $(document).ready(function() {
                     var list_task_grp_dtl_id = '';
                     var cntGrpDtl = 0;
 
-                    $.each(data_TASK_GROUP_DETAIL, function(index, TASK_GROUP_DETAIL) {
+                    $.each(data_TASK_GROUP_DETAIL, function (index, TASK_GROUP_DETAIL) {
                         cntGrpDtl++;
                         if (data_TASK_GROUP_DETAIL.length == cntGrpDtl) {
                             list_task_grp_dtl_id = list_task_grp_dtl_id + `'${TASK_GROUP_DETAIL.TASK_GROUP_DETAIL_ID}'`;
@@ -1348,7 +1354,7 @@ $(document).ready(function() {
                                 data,
                             },
                         })
-                        .then(function(response2) {
+                        .then(function (response2) {
                             if (response2.errno != undefined) {
                                 // ERR
                             } else {
@@ -1358,7 +1364,7 @@ $(document).ready(function() {
                                 HandleAfterGetDataForTaskGrpAndTaskDetailWhenClickOnTitle(response);
                             } // }// end else SUCCESS
                         })
-                        .catch(function(error) {
+                        .catch(function (error) {
                             console.log(error);
                         });
                     // Get notify by task_grp_detail_id and user_login_id END
@@ -1369,7 +1375,7 @@ $(document).ready(function() {
 
 
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 $('#modalFullCoverLoader').hide();
             });
 
@@ -1389,7 +1395,7 @@ $(document).ready(function() {
 
         // add group when click on folder START
         if (data_TASK_GROUP.length > 0) {
-            $.each(data_TASK_GROUP, function(index, TASK_GROUP) {
+            $.each(data_TASK_GROUP, function (index, TASK_GROUP) {
                 idTaskHdr++;
                 var textTime = GF_Ex_ParseTime(
                     TASK_GROUP.create_datetime,
@@ -1425,7 +1431,7 @@ $(document).ready(function() {
         // add task detail to group when click on folder START
         idTaskHdr = 0;
         if (data_TASK_GROUP_DETAIL.length > 0) {
-            $.each(data_TASK_GROUP_DETAIL, function(index, TASK_GROUP_DETAIL) {
+            $.each(data_TASK_GROUP_DETAIL, function (index, TASK_GROUP_DETAIL) {
                 idTaskHdr++;
                 var textTime = GF_Ex_ParseTime(
                     TASK_GROUP_DETAIL.TASK_GRP_DTL_CREATE_TIME,
@@ -1434,7 +1440,7 @@ $(document).ready(function() {
                 var grp_id = TASK_GROUP_DETAIL.group_id;
                 var task_grp_dtl_name = TASK_GROUP_DETAIL.task_grp_dtl_name;
 
-                var creator = $.grep(array_ALL_user, function(n, i) {
+                var creator = $.grep(array_ALL_user, function (n, i) {
                     return n.id == TASK_GROUP_DETAIL.creator_id;
                 })[0];
 
@@ -1443,7 +1449,7 @@ $(document).ready(function() {
                 // find list user in task group
                 var listUserInTaskGrpDetail = $.grep(
                     data_TASK_GROUP_DETAIL_USER,
-                    function(n, i) {
+                    function (n, i) {
                         return (
                             n.TASK_GROUP_DETAIL_ID ==
                             TASK_GROUP_DETAIL.TASK_GROUP_DETAIL_ID
@@ -1454,18 +1460,18 @@ $(document).ready(function() {
                 // Set list name in html START
                 var index = 0;
                 var templateName = "";
-                $.each(listUserInTaskGrpDetail, function(indexUser, user) {
+                $.each(listUserInTaskGrpDetail, function (indexUser, user) {
                     index++;
                     var backgroundColor =
                         index == 1 ?
-                        "badge blue" :
-                        index == 2 ?
-                        "badge red" :
-                        index == 3 ?
-                        "badge badge-secondary" :
-                        index == 4 ?
-                        "badge green" :
-                        "";
+                            "badge blue" :
+                            index == 2 ?
+                                "badge red" :
+                                index == 3 ?
+                                    "badge badge-secondary" :
+                                    index == 4 ?
+                                        "badge green" :
+                                        "";
 
                     index = index == 4 ? 0 : index;
 
@@ -1486,7 +1492,7 @@ $(document).ready(function() {
                 var cntNotifyInDetail = 0;
                 var listNotifyInDetail = $.grep(
                     data_NOTIFY_IN_CMT,
-                    function(notify, i) {
+                    function (notify, i) {
                         return (
                             notify.task_grp_detail_id ==
                             TASK_GROUP_DETAIL.TASK_GROUP_DETAIL_ID
@@ -1533,20 +1539,20 @@ $(document).ready(function() {
         // add task detail to group when click on folder END
 
         $(".btn_create_task_group").click(
-            (store_func_btn_create_task_group = function(e) {
+            (store_func_btn_create_task_group = function (e) {
                 var btn = $(this);
                 HandleClickOnBtnShowModalCreate_task_group(btn);
             })
         );
 
         $(".btn_add_on_task_header").click(
-            (store_func_btn_add_on_task_header = function(e) {
+            (store_func_btn_add_on_task_header = function (e) {
                 var btn = $(this);
                 HandleClickOnBtnShowModalCreate_task_group_detail(btn);
             })
         );
 
-        $(".show_task_grp_detail").click(function(e) {
+        $(".show_task_grp_detail").click(function (e) {
             var adddressInFo = $(this);
             HandleClickOnTaskDetail(adddressInFo);
         });
@@ -1604,12 +1610,12 @@ $(document).ready(function() {
         // });
         $("#modal_task_grp_detail_show_list_check_user")
             .find(".modal_sign_up_task_grp_detail_checkbox_selected_user")
-            .each(function() {
+            .each(function () {
                 $(this).remove();
             });
 
         // user add checkbox list START
-        $.each(array_ALL_user, function(index, user) {
+        $.each(array_ALL_user, function (index, user) {
             var fullname = user.displayName;
             if (fullname == "" || fullname == undefined) {
                 fullname = user.lastname + " " + user.firstname;
@@ -1700,11 +1706,11 @@ $(document).ready(function() {
     ////////////////////////////////////////////////  START EVENT
     ////////////////////////////////////////////////
 
-    $("#btn_signOut").click(function(e) {
+    $("#btn_signOut").click(function (e) {
         GF_HandleSignOut();
     });
 
-    $("#btn_add_title").click(function(e) {
+    $("#btn_add_title").click(function (e) {
         var btn_add_title = $("#btn_add_title");
         var txtTitleText = $("#txt_add_title");
         var d = GetSysDate();
@@ -1744,7 +1750,7 @@ $(document).ready(function() {
             .post(GV_Server_Address + "/insertTitle", {
                 data: data,
             })
-            .then(function(response) {
+            .then(function (response) {
                 if (response.errno != undefined) {
                     // ERR
 
@@ -1769,12 +1775,12 @@ $(document).ready(function() {
                     txtTitleText.focus();
 
                     // Set event after create ITEM Active for LI item - Title
-                    $(".list-group-item-action").click(function(e) {
+                    $(".list-group-item-action").click(function (e) {
                         HandleClickOn_Each_Title($(this));
                     });
                 } // }// end else SUCCESS
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 $("#title_sign_up_fail").show();
                 $("#title_sign_up_fail").fadeOut(1000);
                 btn_add_title.fadeIn(2000);
@@ -1816,7 +1822,7 @@ $(document).ready(function() {
         txtAddFile.val("");
     });
 
-    $("#txtAddFile").on("change keydown paste input", function() {
+    $("#txtAddFile").on("change keydown paste input", function () {
         var checkInputAddFile = $("#checkInputAddFile");
         var txtAddFile = $("#txtAddFile");
         if (txtAddFile.val().length <= 3) {
@@ -1845,7 +1851,7 @@ $(document).ready(function() {
     // }
 
     // for button create ttask group in modal create task group
-    $("#create_task_group_btn_create").click(function(e) {
+    $("#create_task_group_btn_create").click(function (e) {
         if ($("#create_task_group_txt_grp_name").val().trim() == "") {
             GF_ShowToastrWarning("TÊN NHÓM KHÔNG ĐƯỢC ĐỂ TRỐNG");
             $("#create_task_group_txt_grp_name").val("");
@@ -1873,7 +1879,7 @@ $(document).ready(function() {
             .post(GV_Server_Address + "/addtaskgroup", {
                 data: data,
             })
-            .then(function(response) {
+            .then(function (response) {
                 if (response.errno != undefined) {
                     // ERR
                 } else {
@@ -1904,12 +1910,12 @@ $(document).ready(function() {
                     $("#create_task_group_txt_grp_name").focus();
                 }
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 console.log(error);
             });
     });
 
-    $("#create_task_group_detail_btn_create").click(function(e) {
+    $("#create_task_group_detail_btn_create").click(function (e) {
         if ($("#create_task_group_detail_txt_grp_name").val().trim() == "") {
             GF_ShowToastrWarning("TÊN CÔNG VIỆC KHÔNG ĐƯỢC ĐỂ TRỐNG !!");
             $("#create_task_group_detail_txt_grp_name").val("");
@@ -1930,10 +1936,10 @@ $(document).ready(function() {
 
         $("#modal_task_grp_detail_show_list_check_user")
             .find(".modal_sign_up_task_grp_detail_checkbox_selected_user")
-            .each(function() {
+            .each(function () {
                 $(this)
                     .find("input")
-                    .each(function() {
+                    .each(function () {
                         var idCheckBox_UserID = $(this).attr("id");
                         if ($(this).prop("checked") == true) {
                             var id11 = GenUserID();
@@ -1967,7 +1973,7 @@ $(document).ready(function() {
             .post(GV_Server_Address + "/addtaskgroupDetail", {
                 data: data,
             })
-            .then(function(response) {
+            .then(function (response) {
                 if (response.errno != undefined) {
                     // ERR
                     GF_ShowToastrWarning("THÊM THẤT BẠI !!");
@@ -1977,10 +1983,10 @@ $(document).ready(function() {
                     // set UNCHECK for all check box Start
                     $("#modal_task_grp_detail_show_list_check_user")
                         .find(".modal_sign_up_task_grp_detail_checkbox_selected_user")
-                        .each(function() {
+                        .each(function () {
                             $(this)
                                 .find("input")
-                                .each(function() {
+                                .each(function () {
                                     var idCheckBox_UserID = $(this).attr("id");
 
                                     if (idCheckBox_UserID == GV_STORE_SIGN_IN_INFO.id) {
@@ -2010,10 +2016,28 @@ $(document).ready(function() {
                     $("#create_task_group_detail_txt_grp_name").focus();
                 }
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 console.log(error);
             });
     });
+
+
+    $("#btn_open_uermanager_page").click(function (e) {
+
+        if (
+            $.jStorage.get(GV_KEY_STORE_TASK_GRP_TASK_DETAIL) == null ||
+            $.jStorage.get(GV_KEY_STORE_TASK_GRP_TASK_DETAIL) == undefined
+        ) {
+            GV_STORE_TASK_GRP_TASK_DETAIL = {};
+            GV_STORE_TASK_GRP_TASK_DETAIL.GG_email = email;
+            GV_STORE_TASK_GRP_TASK_DETAIL.full_name = full_name;
+            GF_SetjStorage(GV_KEY_STORE_TASK_GRP_TASK_DETAIL, GV_STORE_TASK_GRP_TASK_DETAIL);
+        }
+
+        location.href = GV_link_userManager;
+
+    });
+
 
     ////////////////////////////////////////////////
     ////////////////////////////////////////////////  END EVENT

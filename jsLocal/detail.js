@@ -1,28 +1,13 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     //$('#modalFullCoverLoader').show();
 
-    $('#btn_show_cover').click(function(e) {
-        var btn = $(this);
-        if (btn.attr('data-target') == '#modalFullCoverLoader') {
-            btn.attr('data-target', '#modalDelUserYesNo');
-        } else {
-            btn.attr('data-target', '#modalFullCoverLoader');
-        }
-        btn.attr("data-toggle", "modal");
-
-    });
-
-    $('#span_text_test_1').html('77');
     if (
         $.jStorage.get(GV_KEY_STORE_TASK_GRP_TASK_DETAIL) == null ||
         $.jStorage.get(GV_KEY_STORE_TASK_GRP_TASK_DETAIL) == undefined
     ) {
         location.href = GV_Server_Address + GV_auth_google;
     }
-
-
-
 
     var templateTableListuser = `
     <h4>Người Tham Gia</h4>
@@ -68,6 +53,8 @@ $(document).ready(function() {
         GV_KEY_STORE_TASK_GRP_TASK_DETAIL
     );
 
+
+
     // GV_STORE_TASK_GRP_TASK_DETAIL= {} below
     // CmtDetailText: ""
     // CmtDetailTextID: ""
@@ -108,7 +95,7 @@ $(document).ready(function() {
     CheckUserIsdeleted_And_Init_Control(GV_STORE_TASK_GRP_TASK_DETAIL.User_login_id, GV_STORE_TASK_GRP_TASK_DETAIL.GG_email);
 
 
-    var setsetIntervalCheckUserIsdeleted = setInterval(function() {
+    var setsetIntervalCheckUserIsdeleted = setInterval(function () {
         CheckUserIsdeleted(GV_STORE_TASK_GRP_TASK_DETAIL.User_login_id, GV_STORE_TASK_GRP_TASK_DETAIL.GG_email);
     }, 10000)
 
@@ -143,7 +130,7 @@ $(document).ready(function() {
                     data,
                 },
             })
-            .then(function(response) {
+            .then(function (response) {
                 if (response.data.errno != undefined) {
                     // ERR
                     $('#holder_info_1').html(``);
@@ -161,7 +148,7 @@ $(document).ready(function() {
                     }
                 } // }// end else SUCCESS
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 $('#holder_info_1').html(``);
             });
     }
@@ -179,7 +166,7 @@ $(document).ready(function() {
                     data,
                 },
             })
-            .then(function(response) {
+            .then(function (response) {
                 if (response.data.errno != undefined) {
                     // ERR
                     location.href = GV_Server_Address + GV_auth_google;
@@ -194,7 +181,7 @@ $(document).ready(function() {
                     }
                 } // }// end else SUCCESS
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 location.href = GV_Server_Address + GV_auth_google;
             });
     }
@@ -246,7 +233,7 @@ $(document).ready(function() {
                     data,
                 },
             })
-            .then(function(response) {
+            .then(function (response) {
                 if (response.data.errno != undefined) {
                     // ERR
                 } else {
@@ -264,7 +251,7 @@ $(document).ready(function() {
                     }
                 } // }// end else SUCCESS
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 console.log(error);
             });
     }
@@ -283,8 +270,8 @@ $(document).ready(function() {
                     data,
                 },
             })
-            .then(function(response) {
-                if (response.data.errno != undefined) {} else {
+            .then(function (response) {
+                if (response.data.errno != undefined) { } else {
                     data_USER_AfterGet = response.data;
 
                     if (
@@ -321,12 +308,12 @@ $(document).ready(function() {
 
                     // Event when select 1 user
                     $("#task_dtl_SelectAddUser")
-                        .change(function() {
+                        .change(function () {
                             ArrSelectedListWhenClickOnCheckBox = [];
                             var strIcon = "";
                             var varArrSelectedListOnForm = $(this).find(":selected");
                             if (varArrSelectedListOnForm.length > 1) {
-                                $.each(varArrSelectedListOnForm, function(index, value) {
+                                $.each(varArrSelectedListOnForm, function (index, value) {
                                     if (index == 0) {
                                         return;
                                     }
@@ -340,7 +327,7 @@ $(document).ready(function() {
                     // create data for select list User
 
                     var cnt = 0;
-                    $.each(data_USER_AfterGet, function(indx, user) {
+                    $.each(data_USER_AfterGet, function (indx, user) {
                         if (user.TYPE == "OUT_DETAIL") {
                             // user.TYPE == OUT_DETAIL những người ngoai` detail nên có thể được chọn để thêm vào
                             cnt++;
@@ -363,7 +350,7 @@ $(document).ready(function() {
                     // Create data for table in task detail START
 
                     list_user_in_detail = [];
-                    $.each(data_USER_AfterGet, function(indx, user) {
+                    $.each(data_USER_AfterGet, function (indx, user) {
                         if (user.TYPE == "IN_DETAIL") {
                             // user.TYPE == IN_DETAIL show thông tin những người trong task_detail 
 
@@ -430,7 +417,7 @@ $(document).ready(function() {
                         }
                     }); // each
 
-                    $(".task_grp_detail_user_delete").click(function(e) {
+                    $(".task_grp_detail_user_delete").click(function (e) {
                         e.preventDefault();
 
                         HandleShowModalYesNo_Delete_UserInTaskGrpDetail(
@@ -439,7 +426,7 @@ $(document).ready(function() {
                         );
                     });
 
-                    $(".task_grp_detail_user_update").click(function(e) {
+                    $(".task_grp_detail_user_update").click(function (e) {
                         e.preventDefault();
                         var index_Row_Table = $(this).attr("index_Row_Table");
                         var userID = $(this).attr("userID");
@@ -453,7 +440,7 @@ $(document).ready(function() {
                         var address = dataRow[5];
 
                         if (phone1.includes("<input")) {
-                            $(`.input_tableUserInTaskDetail_${userID}`).each(function() {
+                            $(`.input_tableUserInTaskDetail_${userID}`).each(function () {
                                 $(this).focus();
                                 // $(this).selectionStart();
                             });
@@ -496,7 +483,7 @@ $(document).ready(function() {
                             )
                             .draw();
 
-                        $(`.input_tableUserInTaskDetail_${userID}`).each(function() {
+                        $(`.input_tableUserInTaskDetail_${userID}`).each(function () {
                             $(this).focus();
                             // $(this).selectionStart();
                         });
@@ -506,10 +493,10 @@ $(document).ready(function() {
 
                     // click row set color START
                     $("#table_show_list_user_in_task_detail > tbody > tr").click(
-                        function() {
+                        function () {
                             $("#table_show_list_user_in_task_detail > tbody")
                                 .find("tr")
-                                .each(function() {
+                                .each(function () {
                                     $(this).css("background-color", "white");
                                 });
 
@@ -542,7 +529,7 @@ $(document).ready(function() {
 
         $("#table_show_list_user_in_task_detail_wrapper")
             .find(".row")
-            .each(function() {
+            .each(function () {
                 $(this).remove();
                 return false;
             });
@@ -580,7 +567,7 @@ $(document).ready(function() {
     ) {
         var listFileInfo = "";
         if (ArrayFile != undefined && ArrayFile.length > 0) {
-            $.each(ArrayFile, function(index, file) {
+            $.each(ArrayFile, function (index, file) {
                 iconLinkType = GF_GetLinkImgForIconFile(file.file_name);
                 listFileInfo =
                     listFileInfo +
@@ -735,7 +722,7 @@ $(document).ready(function() {
         $("#car_holder_ALL_object_email_comment").prepend(template);
         $(".collapse").collapse("hide");
 
-        $(`#file_cmt_detail_with_cmt_mst_has_id_${idCmt}`).on('change', function(event) {
+        $(`#file_cmt_detail_with_cmt_mst_has_id_${idCmt}`).on('change', function (event) {
 
             var controlFile = $(this);
             var numberFile = controlFile.prop("files").length;
@@ -769,19 +756,19 @@ $(document).ready(function() {
         var arrFile = [];
         var listFile = "";
 
-        $.each(ArrayCmtDtlForEmail, function(indexCmt, cmt_dtl) {
+        $.each(ArrayCmtDtlForEmail, function (indexCmt, cmt_dtl) {
             if (arr_file.length > 0) {
                 arrFile = [];
                 listFile = "";
 
-                $.each(arr_file, function(indexFile, file) {
+                $.each(arr_file, function (indexFile, file) {
                     if (cmt_dtl.cmt_id == file.cmt_id) {
                         arrFile.push(file);
                     }
                 });
 
                 if (arrFile.length > 0) {
-                    $.each(arrFile, function(indexFile, file) {
+                    $.each(arrFile, function (indexFile, file) {
 
                         var templateFile = `
                         <br/>
@@ -804,7 +791,7 @@ $(document).ready(function() {
 
             var notifyText = ''
             var cntCheck = 1;
-            $.each(GV_STORE_TASK_GRP_TASK_DETAIL.Notify_By_TaskDtlID_And_userLogin, function(indexFile, Notify_By) {
+            $.each(GV_STORE_TASK_GRP_TASK_DETAIL.Notify_By_TaskDtlID_And_userLogin, function (indexFile, Notify_By) {
                 if (cntCheck == 1 && Notify_By.cmt_id == cmt_dtl.cmt_id) {
                     cntCheck++;
                     notifyText = `</strong><a notify_id='${Notify_By.notify_id}' seen_flag='1' class="class_a_unRead_badge" href="javascript:;"><span class="badge badge-secondary">Chưa xem</span></a>`;
@@ -857,7 +844,7 @@ $(document).ready(function() {
                     data,
                 },
             })
-            .then(function(response) {
+            .then(function (response) {
                 if (response.data.errno != undefined) {
                     // ERR
                 } else {
@@ -872,25 +859,25 @@ $(document).ready(function() {
                     var ArrayFileInCmt = [];
                     var ArrayCmtDtlForEmail = [];
                     var CntMst = 0;
-                    $.each(arr_email_cmt_mst, function(index, cmtEmailMst) {
+                    $.each(arr_email_cmt_mst, function (index, cmtEmailMst) {
                         ArrayFileInCmt = [];
                         ArrayCmtDtlForEmail = [];
                         var list_notify_in_mst = [];
                         var list_notify_in_each_cmt_dtl = [];
 
-                        $.each(arr_file, function(index, file) {
+                        $.each(arr_file, function (index, file) {
                             if (file.cmt_id == cmtEmailMst.cmt_id) {
                                 ArrayFileInCmt.push(file);
                             }
                         });
 
-                        $.each(arr_cmt_dtl, function(index, cmt_dtl) {
+                        $.each(arr_cmt_dtl, function (index, cmt_dtl) {
                             if (cmt_dtl.cmt_mst_id == cmtEmailMst.cmt_id) {
                                 ArrayCmtDtlForEmail.push(cmt_dtl);
                             }
                         });
 
-                        $.each(GV_STORE_TASK_GRP_TASK_DETAIL.Notify_By_TaskDtlID_And_userLogin, function(index, notify) {
+                        $.each(GV_STORE_TASK_GRP_TASK_DETAIL.Notify_By_TaskDtlID_And_userLogin, function (index, notify) {
                             if (notify.cmt_mst_id == cmtEmailMst.cmt_id) {
                                 list_notify_in_mst.push(notify);
                             }
@@ -924,7 +911,7 @@ $(document).ready(function() {
 
                     if (GV_STORE_TASK_GRP_TASK_DETAIL.EmailContainHtml != undefined && GV_STORE_TASK_GRP_TASK_DETAIL.EmailContainHtml != '') {
 
-                        $("#div_textarea_email_container").find(".richText-editor").each(function() {
+                        $("#div_textarea_email_container").find(".richText-editor").each(function () {
                             //var id_richText = $(this).attr('id');
                             control_richText = $(this);
                             control_richText[0].outerHTML = GV_STORE_TASK_GRP_TASK_DETAIL.EmailContainHtml;
@@ -932,7 +919,7 @@ $(document).ready(function() {
                     }
 
 
-                    $('.class_a_unRead_badge').click(function(e) {
+                    $('.class_a_unRead_badge').click(function (e) {
                         e.preventDefault();
                         var control = $(this);
                         var seen_flag = control.attr('seen_flag');
@@ -946,9 +933,9 @@ $(document).ready(function() {
                         // post data
                         // in SERVER get data USING :  req.body.data
                         axios.post(GV_Server_Address + '/DeleteNotifyByID', {
-                                data: data,
-                            })
-                            .then(function(response) {
+                            data: data,
+                        })
+                            .then(function (response) {
                                 if (response.errno != undefined) {
                                     // ERR
                                     GF_ShowToastrWarning('Mất kết nối Internet!!');
@@ -959,12 +946,12 @@ $(document).ready(function() {
                                     // control.hide();
                                 } // }// end else SUCCESS
                             })
-                            .catch(function(error) {
+                            .catch(function (error) {
                                 console.log(error);
                             });
                     });
 
-                    $(".btn_collapse_class").click(function(e) {
+                    $(".btn_collapse_class").click(function (e) {
                         var btn = $(this);
                         if (btn.attr("show_collpase") === "false") {
                             btn.attr("show_collpase", "true");
@@ -975,13 +962,13 @@ $(document).ready(function() {
                         }
                     });
 
-                    $(".btn_add_cmt_detail_class").click(function(e) {
+                    $(".btn_add_cmt_detail_class").click(function (e) {
                         Handle_btn_add_cmt_detail_class($(this));
                     });
                 } // }// end else SUCCESS
                 $('#modalFullCoverLoader').hide();
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 $('#modalFullCoverLoader').hide();
                 console.log(error);
             });
@@ -1007,7 +994,7 @@ $(document).ready(function() {
                     data,
                 },
             })
-            .then(function(response) {
+            .then(function (response) {
                 if (response.errno != undefined) {
                     // ERR
                 } else {
@@ -1018,7 +1005,7 @@ $(document).ready(function() {
                     return;
                 } // }// end else SUCCESS
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 console.log(error);
             });
     }
@@ -1063,9 +1050,9 @@ $(document).ready(function() {
             // post data
             // in SERVER get data USING :  req.body.dataFile
             axios.post(GV_Server_Address + '/insertFileToDB', {
-                    dataFile: data,
-                })
-                .then(function(response) {
+                dataFile: data,
+            })
+                .then(function (response) {
                     if (response.data.errno != undefined) {
                         // ERR
                         ERR = `ERR`;
@@ -1076,7 +1063,7 @@ $(document).ready(function() {
                         Handle_InsertCmtDetailForEmailMaster_InsertNotifytoCmtDtl(cmt_mst_id, idCmtDtl, cmt_dtl_text, listDataFileAfterUpGG);
                     } // }// end else SUCCESS
                 })
-                .catch(function(error) {
+                .catch(function (error) {
                     ERR = `ERR`;
                     Handle_ClearAfterInsertCmtDtl_And_Notify(cmt_mst_id, idCmtDtl, '', '', listDataFileAfterUpGG, `ERR`);
                 });
@@ -1096,7 +1083,7 @@ $(document).ready(function() {
                     'Content-Type': 'multipart/form-data'
                 }
             })
-            .then(function(response) {
+            .then(function (response) {
                 if (response.data.errno != undefined) {
 
                 } else {
@@ -1127,7 +1114,7 @@ $(document).ready(function() {
                     Handle_UploadFile_For_CmtDtl(controlFile, accesstoken1, cmt_mst_id, idCmtDtl, cmt_dtl_text, index, numberFile, listDataFileAfterUpGG);
                 }
             })
-            .catch(function(error) {
+            .catch(function (error) {
 
             });
 
@@ -1151,7 +1138,7 @@ $(document).ready(function() {
         };
         var list_user_in_detailTamp = [];
         var cntNotify = 0;
-        $.each(list_user_in_detail, function(index, userDtl) {
+        $.each(list_user_in_detail, function (index, userDtl) {
             cntNotify++;
             list_user_in_detailTamp.push({
                 'id': `CMT_DTL_${idCmtDtl}_NOTF_ID_${cntNotify.toString()}`,
@@ -1170,7 +1157,7 @@ $(document).ready(function() {
                 data: dataCmtDetail,
                 listUserIDNotifyTo: list_user_in_detailTamp
             })
-            .then(function(response) {
+            .then(function (response) {
                 if (response.data.errno != undefined) {
                     ERR = `ERR`;
 
@@ -1179,7 +1166,7 @@ $(document).ready(function() {
                 }
                 Handle_ClearAfterInsertCmtDtl_And_Notify(cmt_mst_id, idCmtDtl, cmt_dtl_text, dataCmtDetail.create_datetime, listDataFileAfterUpGG, ERR);
             })
-            .catch(function(err) {
+            .catch(function (err) {
 
                 ERR = `ERR`;
                 Handle_ClearAfterInsertCmtDtl_And_Notify(cmt_mst_id, idCmtDtl, '', '', listDataFileAfterUpGG, ERR);
@@ -1192,7 +1179,7 @@ $(document).ready(function() {
 
             var listFile = "";
             if (listDataFileAfterUpGG.length > 0) {
-                $.each(listDataFileAfterUpGG, function(index, file) {
+                $.each(listDataFileAfterUpGG, function (index, file) {
 
                     // cmt_id: "202009281134120342"
                     // create_datetime: "20200928113414"
@@ -1261,7 +1248,7 @@ $(document).ready(function() {
         var control_file_email = $("#fileinput2");
         var control_file_name_email = $("#fileinput3");
         var control_richText = undefined;
-        $("#div_textarea_email_container").find(".richText-editor").each(function() {
+        $("#div_textarea_email_container").find(".richText-editor").each(function () {
             control_richText = $(this);
         });
         var hdr = $("#email_contain_header").val();
@@ -1289,9 +1276,9 @@ $(document).ready(function() {
         // post data
         // in SERVER get data USING :  req.body.data
         axios.post(GV_Server_Address + '/InsertCmtMst', {
-                data: data,
-            })
-            .then(function(response) {
+            data: data,
+        })
+            .then(function (response) {
                 $('#insertEmailMst_Loader').hide();
                 if (response.data.errno != undefined) {
                     // ERR
@@ -1303,7 +1290,7 @@ $(document).ready(function() {
                     control_file_name_email.val('');
                     $("#email_contain_header").val('');
                     $("#list_file_email_upload").html('');
-                    $("#div_textarea_email_container").find(".richText-editor").each(function() {
+                    $("#div_textarea_email_container").find(".richText-editor").each(function () {
                         $(this).html('');
                     });
                     alert('THÀNH CÔNG');
@@ -1313,7 +1300,7 @@ $(document).ready(function() {
                 } // }// end else SUCCESS
                 $('#modalFullCoverLoader').hide();
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 $('#insertEmailMst_Loader').hide();
                 $('#modalFullCoverLoader').hide();
             });
@@ -1327,9 +1314,9 @@ $(document).ready(function() {
         // post data
         // in SERVER get data USING :  req.body.dataFile
         axios.post(GV_Server_Address + '/insertFileToDB', {
-                dataFile: data,
-            })
-            .then(function(response) {
+            dataFile: data,
+        })
+            .then(function (response) {
                 if (response.data.errno != undefined) {
                     // ERR
                     $('#insertEmailMst_Loader').hide();
@@ -1340,7 +1327,7 @@ $(document).ready(function() {
                     HandleInsertDBCmtEmailMst();
                 } // }// end else SUCCESS
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 $('#modalFullCoverLoader').hide();
                 $('#insertEmailMst_Loader').hide();
             });
@@ -1356,7 +1343,7 @@ $(document).ready(function() {
                     data,
                 },
             })
-            .then(function(response) {
+            .then(function (response) {
                 if (response.errno != undefined) {
                     // ERR
 
@@ -1378,7 +1365,7 @@ $(document).ready(function() {
                     }
                 } // }// end else SUCCESS
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 VerifyGoogleAcc();
             });
     }
@@ -1415,7 +1402,7 @@ $(document).ready(function() {
                     'Content-Type': 'multipart/form-data'
                 }
             })
-            .then(function(response) {
+            .then(function (response) {
                 if (response.data.errno != undefined) {
                     $('#insertEmailMst_Loader').hide();
                     index = numberFile;
@@ -1454,7 +1441,7 @@ $(document).ready(function() {
                     uploadFile2_EmailContain(controlFile, index, numberFile, accesstoken2);
                 }
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 $('#insertEmailMst_Loader').hide();
                 $('#list_file_email_upload_loader').hide();
                 index = numberFile;
@@ -1472,7 +1459,7 @@ $(document).ready(function() {
     ////////////////////////////////////////////////////         EVENT START
     ////////////////////////////////////////////////////
 
-    $("#btn_modal_yes_del_user").click(function(e) {
+    $("#btn_modal_yes_del_user").click(function (e) {
 
         $('#modalFullCoverLoader').show();
         $("#task_dtl_btn_AddUser_from_Selected")
@@ -1495,7 +1482,7 @@ $(document).ready(function() {
             .post(GV_Server_Address + "/DeleteUserInGrpTaskDetail", {
                 data: data,
             })
-            .then(function(response) {
+            .then(function (response) {
                 if (response.data.errno != undefined) {
                     // ERR
                     GF_ShowToastrWarning("XOÁ THẤT BẠI !!");
@@ -1515,7 +1502,7 @@ $(document).ready(function() {
                     );
                 } // }// end else SUCCESS
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 GF_ShowToastrWarning("XOÁ THẤT BẠI !!");
                 $("#task_dtl_btn_AddUser_from_Selected")
                     .html("THÊM")
@@ -1524,14 +1511,14 @@ $(document).ready(function() {
             });
     });
 
-    $("#float_show_modal_add_cmt").click(function(e) {
+    $("#float_show_modal_add_cmt").click(function (e) {
         var div = $(this);
         div.attr("data-toggle", "modal");
         $("#show_spinner_upload_file").hide();
         $("#show_msg_err_upload_file").hide();
     });
 
-    $("#btn_open_modal_create_email").click(function(e) {
+    $("#btn_open_modal_create_email").click(function (e) {
         var btn = $(this);
 
         btn.attr("data-target", "#modalAddComment");
@@ -1540,7 +1527,7 @@ $(document).ready(function() {
         $("#show_msg_err_upload_file").hide();
     });
 
-    $("#task_dtl_btn_SaveMoTaChung").click(function(e) {
+    $("#task_dtl_btn_SaveMoTaChung").click(function (e) {
         var btn = $("#task_dtl_btn_SaveMoTaChung");
         var d = GetSysDate();
         var t = GetSysTime();
@@ -1561,7 +1548,7 @@ $(document).ready(function() {
             .post(GV_Server_Address + "/UpdateDescriptionGeneralForTaskGrpDetail", {
                 data: data,
             })
-            .then(function(response) {
+            .then(function (response) {
                 if (response.data.errno != undefined) {
                     // ERR
                     btn.html("SAVE").removeClass("disabled");
@@ -1571,13 +1558,13 @@ $(document).ready(function() {
 
                 btn.html("SAVE").removeClass("disabled");
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 console.log(error);
                 btn.html("SAVE").removeClass("disabled");
             });
     });
 
-    $("#task_dtl_btn_AddUser_from_Selected").click(function(e) {
+    $("#task_dtl_btn_AddUser_from_Selected").click(function (e) {
         var btn = $(this);
         btn
             .html(
@@ -1590,7 +1577,7 @@ $(document).ready(function() {
             ":selected"
         );
         if (varArrSelectedListOnForm.length > 1) {
-            $.each(varArrSelectedListOnForm, function(index, value) {
+            $.each(varArrSelectedListOnForm, function (index, value) {
                 if (index == 0) {
                     return;
                 }
@@ -1629,7 +1616,7 @@ $(document).ready(function() {
             .post(GV_Server_Address + "/InsertUserWhenClickBtnAddUserToTaskDetail", {
                 data: data,
             })
-            .then(function(response) {
+            .then(function (response) {
                 if (response.data.errno != undefined) {
                     // ERR
                     GF_ShowToastrWarning("THÊM THẤT BẠI !!");
@@ -1642,13 +1629,13 @@ $(document).ready(function() {
                     );
                 } // }// end else SUCCESS
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 GF_ShowToastrWarning("THÊM THẤT BẠI !!");
                 btn.html("THÊM").removeClass("disabled");
             });
     });
 
-    $("#fileinput2").on('change', function(event) {
+    $("#fileinput2").on('change', function (event) {
 
         $('#list_file_email_upload_loader').hide();
         var controlFile = $("#fileinput2");
@@ -1667,7 +1654,7 @@ $(document).ready(function() {
         }
     });
 
-    $("#create_task_group_btn_create_email_contain").click(function(e) {
+    $("#create_task_group_btn_create_email_contain").click(function (e) {
 
         $('#modalFullCoverLoader').show();
 
@@ -1693,7 +1680,7 @@ $(document).ready(function() {
         }
     });
 
-    $("#task_dtl_btn_UpdateUser_from_Selected").click(function(e) {
+    $("#task_dtl_btn_UpdateUser_from_Selected").click(function (e) {
         if (list_user_need_update.length <= 0) {
             return;
         }
@@ -1709,9 +1696,9 @@ $(document).ready(function() {
         var t = GetSysTime();
         var newID = GenUserID();
 
-        $.each(list_user_need_update, function(index, id_user) {
+        $.each(list_user_need_update, function (index, id_user) {
             var objUser = {};
-            $(".input_tableUserInTaskDetail_" + id_user).each(function() {
+            $(".input_tableUserInTaskDetail_" + id_user).each(function () {
                 var name_control = $(this).attr("name");
                 var userID = $(this).attr("userID");
                 objUser.userID = userID;
@@ -1746,7 +1733,7 @@ $(document).ready(function() {
             .post(GV_Server_Address + "/updateListUserInDetail", {
                 data: data,
             })
-            .then(function(response) {
+            .then(function (response) {
                 if (response.data.errno != undefined) {
                     // ERR
                     $("#task_dtl_btn_AddUser_from_Selected")
@@ -1759,7 +1746,7 @@ $(document).ready(function() {
                     );
                 } // }// end else SUCCESS
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 $("#task_dtl_btn_AddUser_from_Selected")
                     .html("LUU")
                     .removeClass("disabled");

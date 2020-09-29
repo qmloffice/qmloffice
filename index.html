@@ -72,8 +72,10 @@
     <main class="pt-4" style="padding-left: 0px;">
 
 
-        <div class="modal fade overlay1" id="modalFullCoverLoader" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="opacity: 0.6;display: none;">
-            <div class="spinner-grow" style="width: 3rem; height: 3rem;position:fixed; top: 50%; left: 50%;" role="status">
+        <div class="modal fade overlay1" id="modalFullCoverLoader" tabindex="-1" role="dialog"
+            aria-labelledby="myModalLabel" aria-hidden="true" style="opacity: 0.6;display: none;">
+            <div class="spinner-grow" style="width: 3rem; height: 3rem;position:fixed; top: 50%; left: 50%;"
+                role="status">
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
@@ -83,7 +85,8 @@
         </div>
 
         <!-- MODAL create task group START -->
-        <div class="modal fade" id="modalRegisterTaskGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modalRegisterTaskGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header text-center">
@@ -94,7 +97,8 @@
                     </div>
                     <div class="modal-body mx-3">
 
-                        <h5 class="border border-danger text-wrap" style="word-wrap: break-word; font-weight: bold;" id="create_task_group_path_folder">path </h5><br>
+                        <h5 class="border border-danger text-wrap" style="word-wrap: break-word; font-weight: bold;"
+                            id="create_task_group_path_folder">path </h5><br>
                         <label id="create_task_group_creator"></label> <br>
                         <label id="create_task_group_timeCreate"></label>
 
@@ -114,7 +118,8 @@
         <!-- MODAL create task group END -->
 
         <!-- MODAL create task group detail START -->
-        <div class="modal fade" id="modalRegisterTaskGroupDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modalRegisterTaskGroupDetail" tabindex="-1" role="dialog"
+            aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header text-center">
@@ -125,8 +130,10 @@
                     </div>
                     <div class="modal-body mx-3">
 
-                        <h5 class="border border-danger text-wrap" style="word-wrap: break-word; font-weight: bold;" id="create_task_group_detail_path_folder">path </h5>
-                        <h5 class="border border-danger text-wrap" style="word-wrap: break-word; font-weight: bold;" id="create_task_group_detail_grp_name">create_task_group_detail_grp_name </h5>
+                        <h5 class="border border-danger text-wrap" style="word-wrap: break-word; font-weight: bold;"
+                            id="create_task_group_detail_path_folder">path </h5>
+                        <h5 class="border border-danger text-wrap" style="word-wrap: break-word; font-weight: bold;"
+                            id="create_task_group_detail_grp_name">create_task_group_detail_grp_name </h5>
 
                         <label id="create_task_group_detail_creator"></label> <br>
                         <label id="create_task_group_detail_timeCreate"></label>
@@ -139,13 +146,15 @@
                             <label data-error="wrong" data-success="right" for="orangeForm-name">Tên công việc</label>
                         </div>
                         <div id="modal_task_grp_detail_show_list_check_user">
-                            <h5 class="text-wrap" style="word-wrap: break-word; font-weight: bold;" id="">CHỌN NGƯỜI THAM GIA </h5>
+                            <h5 class="text-wrap" style="word-wrap: break-word; font-weight: bold;" id="">CHỌN NGƯỜI
+                                THAM GIA </h5>
                         </div>
 
 
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
-                        <button group_id="" id="create_task_group_detail_btn_create" class="btn btn-deep-orange">THÊM</button>
+                        <button group_id="" id="create_task_group_detail_btn_create"
+                            class="btn btn-deep-orange">THÊM</button>
                     </div>
                 </div>
             </div>
@@ -163,20 +172,34 @@
 
             <!-- row jsTree S-->
             <div id="jstree_div_all" class="row" style="padding: 1%;display: none;">
+                <!-- status save stree START -->
                 <div id="jstree_div_status" class="border border-danger col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
 
                     <button class="btn btn-primary" type="button">
                         <span class="" role="status" aria-hidden="true"></span>
                         Saved
                     </button>
+
+                    <button id='btn_open_uermanager_page' class="btn btn-primary" type="button" style="display: none;">
+                        <span class="" role="status" aria-hidden="true"></span>
+                        QUẢN LÍ NHÂN SỰ
+                    </button>
+
                 </div>
+                <!-- status save stree END -->
 
-                <div id="jstree_div" class="border border-danger col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9"></div>
+                <!-- jstree_div START -->
+                <div id="jstree_div" class="border border-danger col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
 
+                </div>
+                <!-- jstree_div END -->
+
+                <!-- div list title in one folder START -->
                 <div id="" class="border border-danger col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
 
-                    <!-- List group -->
-                    <div class="" id="div_list_title_in_one_folder" role="tablist" style="max-height: 400px; height: 400px; overflow-x:hidden; overflow-y: auto; ">
+
+                    <div class="" id="div_list_title_in_one_folder" role="tablist"
+                        style="max-height: 400px; height: 400px; overflow-x:hidden; overflow-y: auto; ">
                         <div class="md-form md-outline">
                             <input type="text" id="txt_add_title" class="form-control">
                             <label for="form1">THÊM CHỦ ĐỀ</label>
@@ -184,7 +207,8 @@
                             <span id='title_sign_up_fail' class="badge badge-pill badge-danger">Fail</span>
 
                             <button id="btn_add_title" type="button" class="btn btn-secondary">THÊM</button>
-                            <span id="spinner_show_wait_signup_title" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                            <span id="spinner_show_wait_signup_title" class="spinner-grow spinner-grow-sm" role="status"
+                                aria-hidden="true"></span>
 
                         </div>
 
@@ -192,10 +216,8 @@
 
                         </ul>
                     </div>
-
-
-
                 </div>
+                <!-- div list_title_in_one_folder END -->
 
             </div>
             <!-- row jsTree E-->
@@ -213,10 +235,12 @@
                             <!--Card content Table list task S-->
                             <div class="card-body">
 
-                                <h5 id="path_folder" class="text-center" style="background-color: blueviolet;color:white;">QML</h5>
+                                <h5 id="path_folder" class="text-center"
+                                    style="background-color: blueviolet;color:white;">QML</h5>
                                 <!--Table list task S-->
                                 <div class="table-responsive ">
-                                    <table id="tab_showtask" class="table table-bordered table-hover table-forum text-center table-responsive-md">
+                                    <table id="tab_showtask"
+                                        class="table table-bordered table-hover table-forum text-center table-responsive-md">
                                         <!--Table head-->
 
                                         <!-- <thead>

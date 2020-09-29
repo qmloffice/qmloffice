@@ -1,14 +1,20 @@
 var GV_Server_Address = "";
+
+var GV_link_index_page = '';
+var GV_link_userManager = '';
 var GV_link_detail = "";
 var GV_link_page404 = "";
+
 var GV_auth_google = "";
 
 
 var run_on_env = 'server'; // local <=> server
 
-
 if (run_on_env == 'local') {
     GV_Server_Address = "http://localhost:3000";
+
+    GV_link_index_page = '/';
+    GV_link_userManager = "/usermanager.html";
     GV_link_detail = "/detail.html";
     GV_link_page404 = "/page404.html";
     GV_auth_google = '/auth/login/googleLocal';
@@ -18,9 +24,10 @@ if (run_on_env == 'local') {
     //GV_link_page404 = "/WEB113/page404.html";
     GV_Server_Address = "https://enigmatic-earth-35060.herokuapp.com";
 
+    GV_link_index_page = '/qmloffice/';
+    GV_link_userManager = "/qmloffice/usermanager.html";
     GV_link_detail = "/qmloffice/detail.html";
     GV_link_page404 = "/qmloffice/page404.html";
-
     GV_auth_google = '/auth/login/googleServer';
 }
 
@@ -286,7 +293,7 @@ function GF_GetDateFrom_SysDate(formatType) {
     // dd-mm-yyyy hh:mm:se
     else if (formatType == 2) {
         text = dd + "-" + MM + "-" + yyyy + " " + hh + ":" + mm + ":" + se;
-    } else if (formatType == 3) {} else if (formatType == 4) {}
+    } else if (formatType == 3) { } else if (formatType == 4) { }
 
     return text;
 }
@@ -429,7 +436,7 @@ function GF_GetLinkImgForIconFile(fileName) {
     return iconLinkType;
 }
 
-$.fn.GF_focusEndDivEditable = function() {
+$.fn.GF_focusEndDivEditable = function () {
     $(this).focus();
     var tmp = $('<span />').appendTo($(this)),
         node = tmp.get(0),
@@ -462,7 +469,7 @@ function GF_CheckAccGoogleAvaibleNow(accesstoken1) {
                 data1,
             },
         })
-        .then(function(response) {
+        .then(function (response) {
             if (response.errno != undefined) {
                 // ERR
                 location.href = GV_Server_Address + GV_auth_google;
@@ -475,7 +482,7 @@ function GF_CheckAccGoogleAvaibleNow(accesstoken1) {
                 }
             } // }// end else SUCCESS
         })
-        .catch(function(error) {
+        .catch(function (error) {
             location.href = GV_Server_Address + GV_auth_google;
         });
 }
