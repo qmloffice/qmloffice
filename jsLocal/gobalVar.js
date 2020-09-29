@@ -18,8 +18,8 @@ if (run_on_env == 'local') {
     //GV_link_page404 = "/WEB113/page404.html";
     GV_Server_Address = "https://enigmatic-earth-35060.herokuapp.com";
 
-    GV_link_detail = "/QMLAdmin/detail.html";
-    GV_link_page404 = "/QMLAdmin/page404.html";
+    GV_link_detail = "/qmloffice/detail.html";
+    GV_link_page404 = "/qmloffice/page404.html";
 
     GV_auth_google = '/auth/login/googleServer';
 }
