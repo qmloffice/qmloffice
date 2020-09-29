@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- width=device-width -->
+    <meta name="viewport" content="width=1024, initial-scale=0.1, maximum-scale=5.0, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>MMMMMMMMMMMMMMMM</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" href="css/mdb.min.css">
+    <!-- Your custom styles (optional) -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="js/jsTree/themes/default/style.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+
+
+    <div id='div_assign_using_folder_google_drive' style="display: none;">
+        <form class="md-form" action="#">
+            <div class="file-field">
+                <div class="btn btn-primary btn-sm float-left">
+                    <span>Choose files</span>
+                    <input id='input_file_2' type="file" multiple>
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" placeholder="Upload one or more files">
+                </div>
+            </div>
+        </form>
+
+        <div id='list_file_upp'>
+
+        </div>
+
+        <input id='folder_name_input_test' class="form-control" type="text" placeholder="FOLDER NAME...">
+        <button id='btn_upload_file_test2' type="button" class="btn btn-primary">FOLDER</button>
+        <button id='btn_upload_file_test22' type="button" class="btn btn-secondary">FILES</button>
+
+
+        <div id='up_file2_Loader' class="preloader-wrapper active" style="display: none;">
+            <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <!-- START your project here-->
+    <!-- START your project here-->
+    <!-- START your project here-->
+
+    <main class="pt-4" style="padding-left: 0px;">
+
+
+        <div class='text-center green'>
+            <h5 id='show_info_user'>...</h5>
+        </div>
+
+        <!-- MODAL create task group START -->
+        <div class="modal fade" id="modalRegisterTaskGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h4 class="modal-title w-100 font-weight-bold">THÊM NHÓM MỚI</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;|</span>
+                        </button>
+                    </div>
+                    <div class="modal-body mx-3">
+
+                        <h5 class="border border-danger text-wrap" style="word-wrap: break-word; font-weight: bold;" id="create_task_group_path_folder">path </h5><br>
+                        <label id="create_task_group_creator"></label> <br>
+                        <label id="create_task_group_timeCreate"></label>
+
+                        <div class="md-form mb-5">
+                            <i class="fas fa-user prefix grey-text"></i>
+                            <input type="text" id="create_task_group_txt_grp_name" class="form-control validate">
+                            <label data-error="wrong" data-success="right" for="orangeForm-name">Tên nhóm</label>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button id="create_task_group_btn_create" class="btn btn-deep-orange">Sign up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- MODAL create task group END -->
+
+        <!-- MODAL create task group detail START -->
+        <div class="modal fade" id="modalRegisterTaskGroupDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h4 class="modal-title w-100 font-weight-bold">THÊM CÔNG VIỆC MỚI</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;|</span>
+                        </button>
+                    </div>
+                    <div class="modal-body mx-3">
+
+                        <h5 class="border border-danger text-wrap" style="word-wrap: break-word; font-weight: bold;" id="create_task_group_detail_path_folder">path </h5>
+                        <h5 class="border border-danger text-wrap" style="word-wrap: break-word; font-weight: bold;" id="create_task_group_detail_grp_name">create_task_group_detail_grp_name </h5>
+
+                        <label id="create_task_group_detail_creator"></label> <br>
+                        <label id="create_task_group_detail_timeCreate"></label>
+
+                        <div class="md-form mb-5">
+
+
+                            <i class="fas fa-medal prefix cc_pointer"></i>
+                            <input type="text" id="create_task_group_detail_txt_grp_name" class="form-control validate">
+                            <label data-error="wrong" data-success="right" for="orangeForm-name">Tên công việc</label>
+                        </div>
+                        <div id="modal_task_grp_detail_show_list_check_user">
+                            <h5 class="text-wrap" style="word-wrap: break-word; font-weight: bold;" id="">CHỌN NGƯỜI THAM GIA </h5>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button group_id="" id="create_task_group_detail_btn_create" class="btn btn-deep-orange">THÊM</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- MODAL create task group detail END -->
+
+
+        <div class="container-fluid">
+
+            <!-- Row show RESolution S-->
+            <!-- <div class="row" style="padding: 0.5%;">
+                <input type="text" id="texttexttex1" name="fname"><br><br>
+            </div> -->
+            <!-- Row show RESolution E-->
+
+            <!-- row jsTree S-->
+            <div id="jstree_div_all" class="row" style="padding: 1%;display: none;">
+                <div id="jstree_div_status" class="border border-danger col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
+                    <button class="btn btn-primary" type="button">
+                        <span class="" role="status" aria-hidden="true"></span>
+                        Saved
+                    </button>
+                </div>
+
+                <div id="jstree_div" class="border border-danger col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9"></div>
+
+                <div id="" class="border border-danger col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+
+                    <!-- List group -->
+                    <div class="" id="div_list_title_in_one_folder" role="tablist" style="max-height: 400px; height: 400px; overflow-x:hidden; overflow-y: auto; ">
+                        <div class="md-form md-outline">
+                            <input type="text" id="txt_add_title" class="form-control">
+                            <label for="form1">THÊM CHỦ ĐỀ</label>
+                            <span id='title_sign_up_success' class="badge badge-pill badge-success">Success</span>
+                            <span id='title_sign_up_fail' class="badge badge-pill badge-danger">Fail</span>
+
+                            <button id="btn_add_title" type="button" class="btn btn-secondary">THÊM</button>
+                            <span id="spinner_show_wait_signup_title" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+
+                        </div>
+
+                        <ul id='list_title_in_one_folder' class="list-group">
+
+                        </ul>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+            <!-- row jsTree E-->
+
+            <!--Grid row-->
+            <div class="row">
+                <!--Grid column S-1-->
+                <div class="col-md-9 col-mb-3">
+                    <!-- <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"> -->
+                    <!--Section: Topics-->
+                    <section>
+
+                        <!--Card Table list task S -->
+                        <div id="cardHoldListTable" class="card mb-4">
+                            <!--Card content Table list task S-->
+                            <div class="card-body">
+
+                                <h5 id="path_folder" class="text-center" style="background-color: blueviolet;color:white;">QML</h5>
+                                <!--Table list task S-->
+                                <div class="table-responsive ">
+                                    <table id="tab_showtask" class="table table-bordered table-hover table-forum text-center table-responsive-md">
+                                        <!--Table head-->
+
+                                        <!-- <thead>
+                                            <tr>
+                                                <th>Status</th>
+                                                <th class="text-left">Topic</th>
+                                                <th>Category</th>
+                                                <th>Views</th>
+                                                <th>Answers</th>
+                                                <th>Votes</th>
+                                            </tr>
+                                        </thead> -->
+                                        <!--Table head-->
+                                        <!--Table body-->
+                                        <tbody>
+
+                                            <!-- row header TITLE START -->
+                                            <!-- <tr style="background-color:rgb(21, 151, 75); color: white;">
+
+                                                <td colspan="1" style="font-size: larger;">1</td>
+                                                <td colspan="4" style="font-size: larger;" class="text-left">Cong trinh thang 7, co the bam nut tao them</td>
+                                                <td colspan="1" style="padding: 0px !important; margin: 0px !important;"><button type="button" id="${123}" class="btn_create_task_group btn btn-success px-3" data-toggle="" data-target="#modalRegisterTaskGroup"><i
+                                                            class="far fa-user pr-2"></i>THÊM NHÓM</button></td>
+                                            </tr>
+
+                                            <tr style="background-color: deepskyblue;">
+                                                <th style="width:50px;">Status</th>
+                                                <th style="width:300px;" class="text-left"><i class="fas fa-comment-dollar black-text"></i> Topic</th>
+                                                <th style="width:200px;"><i class="fas fa-users black-text"></i> Người tham gia </th>
+                                                <th style="width:20px;"><i class="fas fa-chalkboard-teacher black-text"></i> </th>
+                                                <th style="width:20px;"><i class="fas fa-chalkboard-teacher black-text"></i></th>
+                                                <th><button type="button " class="btn btn-primary "><i
+                                                            class="far fa-user pr-2 "></i>THÊM CV</button></th>
+                                            </tr> -->
+
+                                            <!-- row header TITLE END -->
+
+                                            <!-- Body row data Start-->
+                                            <!-- <tr>
+                                                <td class="text-center" scope="row">
+                                                    <i class="fas fa-reply purple-text"></i>
+                                                </td>
+                                                <td class="text-left text-wrap">
+                                                    <a href="/detail.html" class="font-weight-bold blue-text">Attributes
+                                                        in MDBDataTable not working? ads asdads asdads asdads asdads
+                                                        asd</a>
+                                                    <div>
+                                                        <span class="badge purple ">Người tạo : LQV</span></br>
+                                                        <span class="badge badge-info">Lúc : 10/02/2020 10:20</span>
+                                                    </div>
+                                                </td>
+
+                                                <td class="text-left text-wrap">
+
+                                                    <a href="#" class="badge blue  text-left text-wrap font-weight-bold blue-text">Tran
+                                                        Thi A Tran Thi A</a>
+                                                    <a href="#" class="badge red  text-left text-wrap font-weight-bold blue-text">Lam
+                                                        Quang V</a>
+                                                    <a href="#" class="badge blue  text-left text-wrap font-weight-bold blue-text">Quan
+                                                        Ai Nhu</a>
+
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                                <td style="padding: 0px !important; margin: 0px !important; "></td>
+                                            </tr> -->
+
+                                            <!-- Body row data End -->
+
+
+
+
+
+
+
+                                        </tbody>
+                                        <!--Table body-->
+                                    </table>
+
+                                    <table id="tab_showtask_staff" class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">First</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- <tr>
+                                                <th scope="row">1</th>
+                                                <td>Mark</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>Jacob</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td>laryk</td>
+                                            </tr> -->
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <!--Table list task E-->
+                                <hr>
+
+                            </div>
+                            <!--Card content Table list task E-->
+                        </div>
+                        <!--Card Table list task E -->
+                    </section>
+                    <!--Section: Topics-->
+                </div>
+                <!--Grid column E-1-->
+
+
+
+            </div>
+            <!--Grid row-->
+        </div>
+    </main>
+
+
+
+    <!-- row button signOut Start -->
+    <button type="button " id="btn_signOut" class="btn btn-dark-green ">Sign Out</button>
+    <!-- row button signOut END -->
+
+
+
+    <!-- END your project here-->
+    <!-- END your project here-->
+    <!-- END your project here-->
+
+
+
+
+    <!-- jQuery -->
+    <script type="text/javascript " src="js/jquery.min.js "></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript " src="js/popper.min.js "></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript " src="js/bootstrap.min.js "></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript " src="js/mdb.min.js "></script>
+    <!-- Your add on -->
+    <script type="text/javascript " src="js/jsTree/jstree.min.js "></script>
+    <script type="text/javascript " src="js/addons/jquery.cookie.js "></script>
+    <script type="text/javascript " src="js/addons/jstorage.min.js "></script>
+    <script type="text/javascript " src="js/addons/datatables.min.js "></script>
+    <script type="text/javascript " src="js/addons/axios.min.js "></script>
+    <script type="text/javascript " src="jsLocal/gobalVar.js "></script>
+    <!-- Your custom scripts (optional) -->
+    <script type="text/javascript " src="jsLocal/index_TaskTree.js "></script>
+    <script type="text/javascript " src="jsLocal/signIn.js "></script>
+    <script type="text/javascript " src="jsLocal/index.js "></script>
+</body>
+
+</html>

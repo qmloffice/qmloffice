@@ -1,0 +1,164 @@
+/* jstree S */
+
+#jstree_div {
+    background-color: antiquewhite;
+}
+
+.jstree-default .jstree-clicked {
+    background-color: deepskyblue;
+}
+
+#jstree_div {
+    display: block;
+    height: 400px;
+    overflow: auto;
+}
+
+
+/* jstree E */
+
+.md-toast-message {
+    color: red;
+    text-align: center;
+}
+
+.modal-full {
+    position: absolute;
+    margin: 0px !important;
+    padding: 0px !important;
+    top: 0px;
+    left: 0px;
+    min-width: 100%;
+    min-height: 100%;
+    width: 100%;
+    height: 5000;
+}
+
+.modal-full .modal-content {
+    position: absolute;
+    margin: 0px !important;
+    padding: 0px !important;
+    top: 0px;
+    left: 0px;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.SignUp {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+.overlay1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background-color: rgb(164, 195, 201);
+    z-index: 2000;
+}
+
+
+/* input+label mean : next input is label */
+
+
+/* .md-form input[type=email]+label.active  */
+
+.md-form input+label.active {
+    background-color: aqua;
+}
+
+.md-form i.active {
+    color: rgb(197, 18, 173) !important;
+}
+
+
+/* id : task_dtl_Textarea_description S */
+
+.purple-border textarea {
+    border: 1px solid #ba68c8;
+}
+
+.purple-border .form-control:focus {
+    border: 1px solid #ba68c8;
+    box-shadow: 0 0 0 0.2rem rgba(186, 104, 200, .25);
+}
+
+
+/* id : task_dtl_Textarea_description E */
+
+.dtHorizontalVerticalExampleWrapper {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#dtHorizontalVerticalExample th,
+td {
+    white-space: nowrap;
+}
+
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+    bottom: .5em;
+}
+
+
+/* task_dtl_table_user_list S */
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box !important;
+}
+
+
+/* task_dtl_table_user_list E */
+
+table.table th {
+    padding-top: .2rem;
+    padding-bottom: .2rem;
+}
+
+
+/* table.table tbody>tr>td {
+    width: 300px;
+} */
+
+.btn-create-new-title-header {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+
+/* detail.js START */
+
+#list_user_add_to_notify {
+    background-color: #6e5454;
+    color: cyan;
+    position: absolute;
+    overflow: auto;
+    height: 224px;
+}
+
+#list_user_add_to_notify a {
+    padding: 10px 10px;
+    text-decoration: none;
+    display: block;
+}
+
+#list_user_add_to_notify a:hover {
+    background-color: #ddd;
+}
+
+
+/* detail.js END */

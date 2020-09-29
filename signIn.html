@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+            shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>MMMMMMMMMMMMMMMM</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" href="css/mdb.min.css">
+    <!-- Your custom styles (optional) -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="js/jsTree/themes/default/style.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+
+
+
+    <!-- Start your project here-->
+
+    <!--Content-->
+    <div class="modal-content">
+
+        <!--Modal cascading tabs-->
+        <div class="modal-c-tabs">
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i
+                            class="fas fa-user mr-1"></i>
+                        Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i
+                            class="fas fa-user-plus mr-1"></i>
+                        Register</a>
+                </li>
+            </ul>
+
+            <!-- Tab panels -->
+            <div class="tab-content">
+                <!--Panel 7-->
+                <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
+
+                    <div class="card">
+
+
+                        <h5 class="card-header info-color white-text text-center py-4">
+                            <strong>LOG IN</strong>
+                        </h5>
+
+                        <!--Card content-->
+                        <div class="card-body px-lg-5 pt-0">
+
+                            <!-- Form -->
+                            <form class="" style="color: #757575;" action="#!">
+
+                                <!-- Email User Name -->
+                                <div class="md-form form-sm mb-5">
+                                    <i class="fas fa-envelope prefix"></i>
+                                    <input type="text" id="SignIn_txt_userid"
+                                        class="form-control form-control-sm validate" value="useradminlqv">
+                                    <label data-error="wrong" data-success="right" for="SignIn_txt_userid">E-mail/
+                                        phone/
+                                        user name</label>
+                                </div>
+
+                                <!-- Password -->
+                                <div class="md-form form-sm mb-5">
+                                    <i class="fas fa-lock prefix"></i>
+                                    <input type="password" id="SignIn_txt_password"
+                                        class="form-control form-control-sm validate" value="1234567">
+                                    <label data-error="wrong" data-success="right" for="SignIn_txt_password">Your
+                                        password</label>
+                                </div>
+
+
+
+                                <div class="d-flex justify-content-around">
+                                    <div>
+                                        <!-- Remember me -->
+                                        <div class="form-check">
+                                            <input id="SignIn_txt_RememberMe" type="checkbox" class="form-check-input">
+                                            <label class="form-check-label" for="SignIn_txt_RememberMe">Remember
+                                                me</label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <!-- Forgot password -->
+                                        <!-- <a href="">Forgot password?</a> -->
+                                    </div>
+                                </div>
+
+                                <!-- Sign in button -->
+                                <button id="btnSignIn" class="btn btn-outline-info
+                                        btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign
+                                    in</button>
+
+                                <button id="btnSignInByGoogle" class="btn btn-outline-info
+                                    btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign
+                                    in By Google</button>
+
+
+                                <!-- Register -->
+                                <!-- <p>Not a member?<a href="">Register</a></p> -->
+
+                                <!-- Social login -->
+                                <!-- <p>or sign in with:</p>
+                                <a type="button" class="btn-floating btn-fb btn-sm">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a type="button" class="btn-floating btn-tw btn-sm">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a type="button" class="btn-floating btn-li btn-sm">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a type="button" class="btn-floating btn-git btn-sm">
+                                    <i class="fab fa-github"></i>
+                                </a> -->
+                            </form>
+                            <!-- Form -->
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!--/.Panel 7-->
+
+                <!--Panel 8-->
+                <div class="tab-pane fade" id="panel8" role="tabpanel">
+
+                    <div class="card">
+
+
+                        <h5 class="card-header info-color white-text text-center py-4">
+                            <strong>REGISTER</strong>
+                        </h5>
+
+                        <!--Card content-->
+                        <div class="card-body px-lg-5 pt-0">
+
+                            <!-- Form -->
+                            <form class="" style="color: #757575;" action="#!">
+
+                                <div class="container SignUp">
+                                    <div class="row">
+                                        <div class="md-form SignUp col-12 col-sm-12
+                                                col-md-12 col-lg-12 col-xl-12">
+                                            <i class="fas fa-arrow-alt-circle-right cc_pointer prefix"></i>
+                                            <input type="text" id="user_id_user" class="form-control validate">
+                                            <label data-error="wrong" data-success="right" for="user_id_user">User
+                                                Name (* Ít nhất 4 kí tự)</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="md-form SignUp col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                                            <i class="fas fa-arrow-alt-circle-right cc_pointer prefix"></i>
+                                            <input type="text" id="user_fname" class="form-control validate">
+                                            <label data-error="wrong" data-success="right" for="user_fname">First Name
+                                                (* Ít nhất 4 kí tự)</label>
+                                        </div>
+
+                                        <div class="md-form SignUp   col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                                            <i class="fas fa-arrow-alt-circle-right cc_pointer prefix"></i>
+                                            <input type="text" id="user_lname" class="form-control validate">
+                                            <label data-error="wrong" data-success="right" for="user_lname">Last
+                                                Name</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="md-form SignUp col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                            <i class="fas fa-arrow-alt-circle-right cc_pointer prefix"></i>
+                                            <input type="text" id="user_address" class="form-control validate">
+                                            <label data-error="wrong" data-success="right" for="user_address">Address (*
+                                                Ít nhất 4
+                                                kí tự)</label>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="md-form SignUp col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                                            <i class="fas fa-arrow-alt-circle-right cc_pointer prefix"></i>
+                                            <input type="number" id="user_phone1" class="form-control validate">
+                                            <label data-error="wrong" data-success="right" for="user_phone1">Phone
+                                                1(* Ít nhất 6 kí
+                                                tự)</label>
+                                        </div>
+
+                                        <div class="md-form SignUp col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                                            <i class="fas fa-arrow-alt-circle-right cc_pointer prefix"></i>
+                                            <input type="number" id="user_phone2" class="form-control validate">
+                                            <label data-error="wrong" data-success="right" for="user_phone2">Phone
+                                                2</label>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="md-form SignUp col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                            <i class="fas fa-arrow-alt-circle-right cc_pointer prefix"></i>
+                                            <input type="email" id="user_email" class="form-control validate">
+                                            <label data-error="wrong" data-success="OK" for="user_email">Email</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="md-form SignUp  col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                                            <i class="fas fa-lock cc_pointer  cc_pointer prefix"></i>
+                                            <input type="password" id="user_password" class="form-control validate"
+                                                value="1234567">
+                                            <label data-error="" data-success="" for="user_password">Password (* Ít nhất
+                                                6 kí
+                                                tự)</label>
+                                        </div>
+
+                                        <div class="md-form SignUp  col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                                            <i class="fas fa-lock cc_pointer  cc_pointer prefix"></i>
+                                            <input type="password" id="user_passwordconfirm"
+                                                class="form-control validate" value="1234567">
+                                            <label data-error="" data-success="" for="user_passwordconfirm">Confirm
+                                                Password (* Ít
+                                                nhất 6 kí
+                                                tự)</label>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- end all input txt -->
+                                </div>
+
+                                <div class="d-flex justify-content-around">
+                                    <div>
+
+                                    </div>
+                                    <div>
+                                        <!-- Forgot password -->
+                                        <!-- <a href="">Forgot password?</a> -->
+                                    </div>
+                                </div>
+
+                                <!-- Sign up button -->
+                                <button id="btn_register_user" class="btn btn-outline-info
+                                        btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign
+                                    UP</button>
+
+
+                            </form>
+                            <!-- Form -->
+
+                        </div>
+
+                    </div>
+                    <!--/.Panel 8-->
+                </div>
+
+            </div>
+        </div>
+        <!--/.Content-->
+
+
+
+
+
+
+
+
+
+        <!-- Footer S-->
+        <footer class="page-footer font-small special-color-dark pt-4">
+
+            <!-- Footer Elements -->
+            <div class="container">
+
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-6 mb-4">
+
+                        <!-- Form -->
+                        <form class="form-inline">
+                            <input class="form-control form-control-sm mr-3
+                                w-75" type="text" placeholder="Search" aria-label="Search">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </form>
+                        <!-- Form -->
+
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-md-6 mb-4">
+
+                        <form class="input-group">
+                            <input type="text" class="form-control
+                                form-control-sm" placeholder="Your email" aria-label="Your email"
+                                aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-sm btn-outline-white
+                                    my-0" type="button">Sign
+                                    up</button>
+                            </div>
+                        </form>
+
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+
+            </div>
+            <!-- Footer Elements -->
+
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">© 2020 Copyright:
+                <a href="http://babymommycare.com/"> babymommycare</a>
+            </div>
+            <!-- Copyright -->
+
+        </footer>
+        <!-- Footer E-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- End your project here-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- jQuery -->
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <!-- Bootstrap tooltips -->
+        <script type="text/javascript" src="js/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="js/mdb.min.js"></script>
+        <!-- Your add on -->
+        <script type="text/javascript" src="js/jsTree/jstree.min.js"></script>
+        <script type="text/javascript" src="js/addons/jquery.cookie.js"></script>
+        <script type="text/javascript" src="js/addons/jstorage.min.js"></script>
+
+        <script type="text/javascript " src="js/addons/datatables.min.js "></script>
+        <script type="text/javascript " src="js/addons/axios.min.js"></script>
+
+        <script type="text/javascript" src="jsLocal/gobalVar.js"></script>
+
+        <!-- Your custom scripts (optional) -->
+        <script type="text/javascript" src="jsLocal/signIn.js"></script>
+
+
+
+</body>
+
+</html>
