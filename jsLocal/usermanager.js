@@ -5,9 +5,11 @@ $(document).ready(function() {
         GV_KEY_STORE_TASK_GRP_TASK_DETAIL
     );
 
+
+
     // QML: Xin Chào <span class="badge badge-danger">ADMIN</span> Vinh Lam (lqvinh.hsu@gmail.com)
 
-    $("#show_info_user").html(`QML: Xin Chào <span class="badge badge-danger">ADMIN11</span> ${GV_STORE_TASK_GRP_TASK_DETAIL.full_name} (${GV_STORE_TASK_GRP_TASK_DETAIL.GG_email})`);
+    $("#show_info_user").html(`QML: Xin Chào <span class="badge badge-danger">ADMIN</span> ${GV_STORE_TASK_GRP_TASK_DETAIL.full_name} (${GV_STORE_TASK_GRP_TASK_DETAIL.GG_email})`);
 
     var radio_text_admin = 'ADMIN';
     var radio_text_staff = 'STAFF';
@@ -58,6 +60,16 @@ $(document).ready(function() {
                                          </button>`;
                             }
 
+                            var disabled_radio_user_login = '';
+
+                            if (GV_STORE_TASK_GRP_TASK_DETAIL.User_login_id == user.id) {
+
+                                text_status = `<a id='text_status_user_id_${userID}' href="javascript:;" class="badge badge-secondary">BẠN-</a> ` + text_status;
+                                textButton = '';
+                                disabled_radio_user_login = 'disabled';
+
+                            }
+
                             var checkAdmin = '';
                             var checkStaff = '';
 
@@ -77,13 +89,13 @@ $(document).ready(function() {
                                     <td>
                                         <!-- Material inline 1 -->
                                         <div class="form-check form-check-inline">
-                                            <input radio_text='${radio_text_admin}' ${checkAdmin} userID='${userID}' type="radio" class="form-check-input" id="radio_userID_${userID}_1" name="grp_radio_userID_${userID}">
+                                            <input ${disabled_radio_user_login} radio_text='${radio_text_admin}' ${checkAdmin} userID='${userID}' type="radio" class="form-check-input" id="radio_userID_${userID}_1" name="grp_radio_userID_${userID}">
                                             <label class="form-check-label" for="radio_userID_${userID}_1">${radio_text_admin}</label>
                                         </div>
     
                                         <!-- Material inline 2 -->
                                         <div class="form-check form-check-inline">
-                                            <input radio_text='${radio_text_staff}' ${checkStaff} userID='${userID}' type="radio" class="form-check-input" id="radio_userID_${userID}_2" name="grp_radio_userID_${userID}">
+                                            <input ${disabled_radio_user_login} radio_text='${radio_text_staff}' ${checkStaff} userID='${userID}' type="radio" class="form-check-input" id="radio_userID_${userID}_2" name="grp_radio_userID_${userID}">
                                             <label class="form-check-label" for="radio_userID_${userID}_2">${radio_text_staff}</label>
                                         </div>
     
@@ -152,15 +164,18 @@ $(document).ready(function() {
             .then(function(response) {
                 if (response.errno != undefined) {
                     // ERR
-                    $('#modalFullCoverLoader').hide();
+
+                    ShowBtnErr();
                 } else {
                     // SUCCESS
-                    InitForm();
+                    // InitForm();
 
                 } // }// end else SUCCESS
+                $('#modalFullCoverLoader').hide();
             })
             .catch(function(error) {
                 $('#modalFullCoverLoader').hide();
+                ShowBtnErr();
             });
 
     }
