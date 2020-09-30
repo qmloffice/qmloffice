@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
 
 
     GV_STORE_TASK_GRP_TASK_DETAIL = $.jStorage.get(
@@ -27,7 +27,7 @@ $(document).ready(function () {
                     data,
                 },
             })
-            .then(function (response) {
+            .then(function(response) {
                 if (response.data.errno != undefined) {
                     // ERR
                     array_ALL_user = [];
@@ -40,21 +40,21 @@ $(document).ready(function () {
                         // SUCCESS
                         array_ALL_user = response.data;
 
-                        $.each(array_ALL_user, function (index, user) {
+                        $.each(array_ALL_user, function(index, user) {
                             cntUser++;
                             var userID = user.id;
                             var textButton = `   
-                                        <button val_xoa='1' displayName='${user.displayName}' userID="${userID}" data-toggle="" data-target="#modalDelUserYesNo" type="button" class="btn_Delete_user_out_system btn btn-danger btn-sm btn-rounded waves-effect waves-light">
-                                            <iclass="fas fa-plane pr-2 pt-1" aria-hidden="true"></i>XOÁ
+                                        <button id='btn_show_modal_del_user_${userID}' val_xoa='1' displayName='${user.displayName}' userID="${userID}" data-toggle="" data-target="#modalDelUserYesNo" type="button" class="btn_Delete_user_out_system btn btn-danger btn-sm btn-rounded waves-effect waves-light">
+                                            <i class="fas fa-plane pr-2 pt-1" aria-hidden="true"></i>XOÁ
                                          </button>`;
 
 
-                            var text_status = `<a href="#" class="badge badge-success">ĐANG HOẠT ĐỘNG</a>`;
+                            var text_status = `<a id='text_status_user_id_${userID}' href="javascript:;" class="badge badge-success">ĐANG HOẠT ĐỘNG</a>`;
                             if (user.delete_system == '1') {
-                                text_status = `<a href="#" class="badge badge-danger">BỊ XOÁ</a>`;
+                                text_status = `<a id='text_status_user_id_${userID}' href="javascript:;" class="badge badge-danger">BỊ XOÁ</a>`;
                                 textButton = `   
-                                        <button val_xoa='0' displayName='${user.displayName}' userID="${userID}" data-toggle="" data-target="#modalDelUserYesNo" type="button" class="btn_Delete_user_out_system btn btn-success btn-sm btn-rounded waves-effect waves-light">
-                                            <iclass="fas fa-plane pr-2 pt-1" aria-hidden="true"></i>THÊM
+                                        <button id='btn_show_modal_del_user_${userID}' val_xoa='0' displayName='${user.displayName}' userID="${userID}" data-toggle="" data-target="#modalDelUserYesNo" type="button" class="btn_Delete_user_out_system btn btn-success btn-sm btn-rounded waves-effect waves-light">
+                                            <i class="fas fa-plane pr-2 pt-1" aria-hidden="true"></i>THÊM
                                          </button>`;
                             }
 
@@ -64,8 +64,7 @@ $(document).ready(function () {
                             if (user.authority_code == GV_AUT_CODE_MASTER) {
                                 checkAdmin = 'checked';
                                 checkStaff = '';
-                            }
-                            else {
+                            } else {
                                 checkStaff = 'checked';
                                 checkAdmin = '';
                             }
@@ -101,21 +100,25 @@ $(document).ready(function () {
     `
                             $('#tab_list_user tbody').append(template_row);
 
-                            $(`input[name='grp_radio_userID_${userID}']`).change(function () {
+                            $(`input[name='grp_radio_userID_${userID}']`).change(function() {
                                 HandleUpdateAutrhorityUser($(this));
                             });
 
-                            $(".btn_Delete_user_out_system").click(function (e) {
-                                e.preventDefault();
-                                Handle_Show_Modal_Yes_No_Delete_Use($(this));
-                            });
-                        });// end for each
+                        }); // end for each
+
+
+
+                        $(".btn_Delete_user_out_system").click(function(e) {
+                            e.preventDefault();
+                            Handle_Show_Modal_Yes_No_Delete_Use($(this));
+                        });
+
 
                     } //end ELSE
                 } // }// end else SUCCESS
                 $('#modalFullCoverLoader').hide();
             })
-            .catch(function (error) {
+            .catch(function(error) {
                 array_ALL_user = [];
                 $('#modalFullCoverLoader').hide();
             });
@@ -128,8 +131,7 @@ $(document).ready(function () {
         var new_authority_value = '';
         if (radio_text == radio_text_admin) {
             new_authority_value = '1';
-        }
-        else if (radio_text == radio_text_staff) {
+        } else if (radio_text == radio_text_staff) {
             new_authority_value = '0';
         }
 
@@ -147,7 +149,7 @@ $(document).ready(function () {
             .post(GV_Server_Address + "/updateAuthorityUser", {
                 data: data,
             })
-            .then(function (response) {
+            .then(function(response) {
                 if (response.errno != undefined) {
                     // ERR
                     $('#modalFullCoverLoader').hide();
@@ -157,66 +159,84 @@ $(document).ready(function () {
 
                 } // }// end else SUCCESS
             })
-            .catch(function (error) {
+            .catch(function(error) {
                 $('#modalFullCoverLoader').hide();
             });
 
     }
 
-    function Handle_Show_Modal_Yes_No_Delete_Use(btn) {
+    function Handle_Show_Modal_Yes_No_Delete_Use(btnPressShowModalYesNo) {
 
-        var userID = btn.attr("userID");
-        var val_xoa = btn.attr("val_xoa");
-        var displayName = btn.attr("displayName");
+        var userID = btnPressShowModalYesNo.attr("userID");
+        var val_xoa = btnPressShowModalYesNo.attr("val_xoa");
+        var displayName_deleted = btnPressShowModalYesNo.attr("displayName");
 
+        $('#btn_modal_yes_del_user').attr('id_btn_press_show_modal_yes_no', btnPressShowModalYesNo.attr("id"));
+        $("#btn_modal_yes_del_user").attr("userid", userID);
+        $("#btn_modal_yes_del_user").attr("val_xoa", val_xoa);
+        $("#btn_modal_yes_del_user").attr("displayName_deleted", displayName_deleted);
+
+        SetUpModalYesNo(val_xoa, displayName_deleted);
+        btnPressShowModalYesNo.attr("data-toggle", "modal");
+    }
+
+    function SetUpModalYesNo(val_xoa, displayName_deleted) {
         if (val_xoa == '1') {
             $('#modal_yes_no_icon').html(`<i class="fas fa-user-times fa-4x"></i>`);
             $('#modal_yes_no_Header').html('XOÁ NGƯỜI DÙNG');
             $('#modal_yes_no_type').attr('class', 'modal-dialog modal-notify modal-danger');
 
             $("#del_user_name").html(
-                `Bạn có đồng ý xoá [<span class='text-danger'>${displayName}</span>] khỏi hệ thống ?`
+                `Bạn có đồng ý xoá [<span class='text-danger'>${displayName_deleted}</span>] khỏi hệ thống ?`
             );
 
             $('#btn_modal_yes_del_user').attr('class', 'btn btn-danger');
             $('#btn_modal_no_del_user').attr('class', 'btn btn-outline-danger waves-effect');
-        }
-        else {
+        } else {
             $('#modal_yes_no_icon').html(`<i class="fas fa-american-sign-language-interpreting cc_pointer fa-4x"></i>`);
             $('#modal_yes_no_Header').html('THÊM NGƯỜI DÙNG');
             $('#modal_yes_no_type').attr('class', 'modal-dialog modal-notify modal-success');
 
             $("#del_user_name").html(
-                `Bạn có đồng ý thêm [<span class='text-success'>${displayName}</span>] vào hệ thống ?`
+                `Bạn có đồng ý thêm [<span class='text-success'>${displayName_deleted}</span>] vào hệ thống ?`
             );
 
             $('#btn_modal_yes_del_user').attr('class', 'btn btn-success');
             $('#btn_modal_no_del_user').attr('class', 'btn btn-outline-success waves-effect');
 
         }
-
-
-
-
-        $("#btn_modal_yes_del_user").attr("userid", userID);
-        $("#btn_modal_yes_del_user").attr("val_xoa", val_xoa);
-
-        btn.attr("data-toggle", "modal");
-
     }
 
-    $("#btn_modal_yes_del_user").click(function (e) {
+    function ShowBtnErr(btn_show_modal_del_yes_no) {
+        var current_html_btn = btn_show_modal_del_yes_no.html();
+        var current_class_btn = btn_show_modal_del_yes_no.attr('class');
+        btn_show_modal_del_yes_no.prop("disabled", true);
+        btn_show_modal_del_yes_no.attr('class', 'animated headShake fast btn_Delete_user_out_system btn btn-danger btn-sm btn-rounded waves-effect waves-light');
+        btn_show_modal_del_yes_no.html('<i class="fas fa-exclamation cc_pointer pr-2 pt-1" aria-hidden="true"></i>LỖI...');
+
+        setTimeout(() => {
+            btn_show_modal_del_yes_no.attr('class', current_class_btn);
+            btn_show_modal_del_yes_no.html(current_html_btn);
+            btn_show_modal_del_yes_no.prop("disabled", false);
+
+        }, 2000);
+    }
+
+    $("#btn_modal_yes_del_user").click(function(e) {
 
         $('#modalFullCoverLoader').show();
 
         var btn = $(this);
+        var userID = btn.attr('userid');
+        var id_btn_press_show_modal_yes_no = btn.attr('id_btn_press_show_modal_yes_no');
+        var displayName_deleted = btn.attr('displayName_deleted');
+        var val_xoa = btn.attr("val_xoa");
+        var btn_show_modal_del_yes_no = $('#' + id_btn_press_show_modal_yes_no);
+
         var d = GetSysDate();
         var t = GetSysTime();
-
-        var val_xoa = btn.attr("val_xoa");
-
         var data = {
-            id: btn.attr('userid'),
+            id: userID,
             updatedate: d,
             updatetime: t,
             val_xoa: val_xoa
@@ -228,17 +248,38 @@ $(document).ready(function () {
             .post(GV_Server_Address + "/deleteUserOutSystem", {
                 data: data,
             })
-            .then(function (response) {
+            .then(function(response) {
                 if (response.data.errno != undefined) {
                     // ERR
-                    $('#modalFullCoverLoader').hide();
+                    ShowBtnErr(btn_show_modal_del_yes_no);
                 } else {
-                    InitForm();
+                    SetUpModalYesNo(val_xoa, displayName_deleted);
+
+                    if (val_xoa == '1') {
+
+                        $(`#text_status_user_id_${userID}`).attr('class', 'badge badge-danger');
+                        $(`#text_status_user_id_${userID}`).html('BỊ XOÁ');
+
+                        btn_show_modal_del_yes_no.attr('class', 'btn_Delete_user_out_system btn btn-success btn-sm btn-rounded waves-effect waves-light');
+                        btn_show_modal_del_yes_no.html('<i class="fas fa-plane pr-2 pt-1" aria-hidden="true"></i>THÊM');
+                        btn_show_modal_del_yes_no.attr('val_xoa', '0');
+
+                    } else {
+                        $(`#text_status_user_id_${userID}`).attr('class', 'badge badge-success');
+                        $(`#text_status_user_id_${userID}`).html('ĐANG HOẠT ĐỘNG');
+
+                        btn_show_modal_del_yes_no.attr('class', 'btn_Delete_user_out_system btn btn-danger btn-sm btn-rounded waves-effect waves-light');
+                        btn_show_modal_del_yes_no.html('<i class="fas fa-plane pr-2 pt-1" aria-hidden="true"></i>XOÁ');
+                        btn_show_modal_del_yes_no.attr('val_xoa', '1');
+                    }
+
                 } // }// end else SUCCESS
+                $('#modalFullCoverLoader').hide();
 
             })
-            .catch(function (error) {
+            .catch(function(error) {
                 $('#modalFullCoverLoader').hide();
+                ShowBtnErr(btn_show_modal_del_yes_no);
             });
     });
 
