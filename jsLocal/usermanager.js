@@ -62,12 +62,13 @@ $(document).ready(function() {
 
                             var disabled_radio_user_login = '';
 
+                            var color_row = '';
                             if (GV_STORE_TASK_GRP_TASK_DETAIL.User_login_id == user.id) {
 
                                 text_status = `<a id='text_status_user_id_${userID}' href="javascript:;" class="badge badge-secondary">BẠN-</a> ` + text_status;
                                 textButton = '';
                                 disabled_radio_user_login = 'disabled';
-
+                                color_row = `style="background-color: #8e8e67;"`;
                             }
 
                             var checkAdmin = '';
@@ -82,7 +83,7 @@ $(document).ready(function() {
                             }
 
                             var template_row = `
-                            <tr>
+                             <tr  ${color_row} >
                                     <th scope="row">${cntUser}</th>
                                     <td>${user.displayName} ${text_status}</td>
                                     <td>${user.email}</td>
