@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <h5><span id="span_text_test_1" class="badge btn-danger">6</span></h5>
+
     <main class="pt-4" style="padding-left: 0px">
         <!-- <h5>
             <a href="#task_dtl_div_selected_user">Click to scroll to section 1</a>
@@ -33,8 +33,7 @@
 
 
         <!-- Central Modal Delete user Yes/No Start-->
-        <div class="modal fade right" id="modalDelUserYesNo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-            aria-hidden="true">
+        <div class="modal fade right" id="modalDelUserYesNo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-notify modal-danger " role="document">
                 <!--Content-->
                 <div class="modal-content">
@@ -65,8 +64,7 @@
 
                     <!--Footer-->
                     <div class="modal-footer justify-content-center">
-                        <a id="btn_modal_yes_del_user" task_grp_detail_id='' userID='' type="button"
-                            class="btn btn-danger" data-dismiss="modal"> CÓ <i
+                        <a id="btn_modal_yes_del_user" task_grp_detail_id='' userID='' type="button" class="btn btn-danger" data-dismiss="modal"> CÓ <i
                                 class="far fa-gem ml-1 white-text"></i></a>
                         <a type="button" class="btn btn-outline-danger waves-effect" data-dismiss="modal">KHÔNG</a>
                     </div>
@@ -77,8 +75,7 @@
         <!-- Central Modal Delete user Yes/No End-->
 
         <!-- MODAL create task group EMAIL MASTER START -->
-        <div class="modal fade" id="modalAddComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="modalAddComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-full" role="document">
                 <div class="modal-content">
                     <div class="modal-header text-center">
@@ -96,8 +93,7 @@
                         </div>
                         <div id="div_textarea_email_container" class="page-wrapper box-content">
                             <h5>Nội dung</h5>
-                            <div id='insertEmailMst_Loader' class="spinner-border text-success" role="status"
-                                style="display: none;">
+                            <div id='insertEmailMst_Loader' class="spinner-border text-success" role="status" style="display: none;">
                                 <span class="sr-only">Loading...</span>
                             </div>
                             <textarea id="textarea_add_cmt" class="content" name="example"></textarea>
@@ -105,24 +101,20 @@
                         <div>
                             <form class="md-form">
                                 <div class="file-field big">
-                                    <a class="btn-floating btn-lg amber darken-2 mt-0 float-left"
-                                        style="width: 50px;height: 50px;">
+                                    <a class="btn-floating btn-lg amber darken-2 mt-0 float-left" style="width: 50px;height: 50px;">
                                         <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
                                         <input id="fileinput2" type="file" multiple>
                                     </a>
                                     <div class="file-path-wrapper">
-                                        <input id="fileinput3" class="file-path validate" type="text"
-                                            placeholder="Thêm file..">
+                                        <input id="fileinput3" class="file-path validate" type="text" placeholder="Thêm file..">
                                     </div>
 
-                                    <div id="show_msg_err_upload_file" class="red text-left" role="status"
-                                        style="font-weight: bold;">
+                                    <div id="show_msg_err_upload_file" class="red text-left" role="status" style="font-weight: bold;">
                                         LỖI UPLOAD FILE !
                                     </div>
                                 </div>
                             </form>
-                            <div id='list_file_email_upload_loader' class="spinner-border text-warning" role="status"
-                                style="display: none;">
+                            <div id='list_file_email_upload_loader' class="spinner-border text-warning" role="status" style="display: none;">
                                 <span class="sr-only">Loading...</span>
                             </div>
                             <div id='list_file_email_upload'>
@@ -145,12 +137,10 @@
 
         <!-- MODAL FULL COVER START -->
 
-        <div class="modal fade overlay1" id="modalFullCoverLoader" tabindex="-1" role="dialog"
-            aria-labelledby="myModalLabel" aria-hidden="true" style="opacity: 0.6;display: none;">
+        <div class="modal fade overlay1" id="modalFullCoverLoader" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="opacity: 0.6;display: none;">
 
 
-            <div class="spinner-grow" style="width: 3rem; height: 3rem;position:fixed; top: 50%; left: 50%;"
-                role="status">
+            <div class="spinner-grow" style="width: 3rem; height: 3rem;position:fixed; top: 50%; left: 50%;" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
 
@@ -183,8 +173,7 @@
 
             <!-- Avatar -->
             <div class="avatar mx-auto white" style="width:60px;height: 60px;">
-                <img id='info_source_img' src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg"
-                    class="rounded-circle" alt="woman avatar">
+                <img id='info_source_img' src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="rounded-circle" alt="woman avatar">
             </div>
 
             <!-- Content -->
@@ -234,8 +223,7 @@
                                     <div class="form-group purple-border">
                                         <label for="exampleFormControlTextarea4">MÔ TẢ CÔNG VIỆC :
                                         </label>
-                                        <textarea id="MoTaChung" class="form-control" id="exampleFormControlTextarea4"
-                                            rows="5"></textarea>
+                                        <textarea id="MoTaChung" class="form-control" id="exampleFormControlTextarea4" rows="5"></textarea>
                                     </div>
 
                                     <button id="task_dtl_btn_SaveMoTaChung" class="btn-save btn btn-primary btn-sm">
@@ -254,10 +242,8 @@
                                 <div id="task_dtl_div_selected_user" class=""></div>
 
                                 <div class="">
-                                    <button id="task_dtl_btn_AddUser_from_Selected"
-                                        class="btn-save btn btn-primary btn-sm"> THEM</button>
-                                    <button id="task_dtl_btn_UpdateUser_from_Selected"
-                                        class="btn-save btn btn-primary btn-sm">LUU</button>
+                                    <button id="task_dtl_btn_AddUser_from_Selected" class="btn-save btn btn-primary btn-sm"> THEM</button>
+                                    <button id="task_dtl_btn_UpdateUser_from_Selected" class="btn-save btn btn-primary btn-sm">LUU</button>
                                 </div>
 
                                 <!-- table show list nguoi tham gia START -->
@@ -271,8 +257,7 @@
 
                         <!-- 3333 CARD COMMENT START -->
                         <br />
-                        <button id="btn_open_modal_create_email" type="button" class="btn btn-info" data-toggle="modal"
-                            data-target="#modalAddComment">
+                        <button id="btn_open_modal_create_email" type="button" class="btn btn-info" data-toggle="modal" data-target="#modalAddComment">
                             Tạo Email
                         </button>
                         <div id="car_holder_ALL_object_email_comment" class="card">
@@ -321,32 +306,25 @@
                                         <!-- Email -->
                                         <a class="px-2 fa-lg email-ic"><i class="fas fa-envelope"> </i></a>
                                     </div>
-                                    <strong class="green"
-                                        style="color: white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BINH
+                                    <strong class="green" style="color: white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BINH
                                         LUAN</strong>
 
                                     <div class="container-fluid">
                                         <!--  ROW START -->
 
                                         <div class="row">
-                                            <div
-                                                class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 border border-primary">
+                                            <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 border border-primary">
                                             </div>
 
-                                            <div id='div_hold_cmt_detail_with_cmt_mst_has_id_XXX'
-                                                class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11 border border-primary text-left">
+                                            <div id='div_hold_cmt_detail_with_cmt_mst_has_id_XXX' class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11 border border-primary text-left">
 
                                                 <!-- 1 comment detail START -->
                                                 <div style="background-color: wheat">
                                                     <strong style="font-size: 10px">Vinh (20/08/2020 10:20:10) :
                                                     </strong>
-                                                    <br /> đã đến chỗ lấy hàng đã đến chỗ lấy hàng đã đến chỗ lấy hàng
-                                                    đã đến chỗ lấy hàng đã đến chỗ lấy hàng đã đến chỗ lấy hàng đã đến
-                                                    chỗ lấy hàng
+                                                    <br /> đã đến chỗ lấy hàng đã đến chỗ lấy hàng đã đến chỗ lấy hàng đã đến chỗ lấy hàng đã đến chỗ lấy hàng đã đến chỗ lấy hàng đã đến chỗ lấy hàng
                                                     <br />
-                                                    <a style="font-size: 12px;color: blue;" id="save_file"
-                                                        href="https://drive.google.com/uc?id=1djFOTJechrKhuNIEs-5sQ2pVpOl_nUJW&amp;export=download"
-                                                        download=""><i class=""><img src="img/icon/Folder-RAR-icon.png"
+                                                    <a style="font-size: 12px;color: blue;" id="save_file" href="https://drive.google.com/uc?id=1djFOTJechrKhuNIEs-5sQ2pVpOl_nUJW&amp;export=download" download=""><i class=""><img src="img/icon/Folder-RAR-icon.png"
                                                                 alt="thumbnail" class="img-thumbnail"
                                                                 style="width: 30px;height: 30px;">
                                                         </i>[lehait.net]Microsoft.Activation.Script.v1.1.zip</a>
@@ -357,13 +335,9 @@
                                                 <div style="background-color: wheat">
                                                     <strong style="font-size: 10px">Vinh (20/08/2020 10:20:10) :
                                                     </strong>
-                                                    <br /> đã đến chỗ lấy hàng đã đến chỗ lấy hàng đã đến chỗ lấy hàng
-                                                    đã đến chỗ lấy hàng đã đến chỗ lấy hàng đã đến chỗ lấy hàng đã đến
-                                                    chỗ lấy hàng
+                                                    <br /> đã đến chỗ lấy hàng đã đến chỗ lấy hàng đã đến chỗ lấy hàng đã đến chỗ lấy hàng đã đến chỗ lấy hàng đã đến chỗ lấy hàng đã đến chỗ lấy hàng
                                                     <br />
-                                                    <a style="font-size: 12px;color: blue;" id="save_file"
-                                                        href="https://drive.google.com/uc?id=1djFOTJechrKhuNIEs-5sQ2pVpOl_nUJW&amp;export=download"
-                                                        download=""><i class=""><img src="img/icon/Folder-RAR-icon.png"
+                                                    <a style="font-size: 12px;color: blue;" id="save_file" href="https://drive.google.com/uc?id=1djFOTJechrKhuNIEs-5sQ2pVpOl_nUJW&amp;export=download" download=""><i class=""><img src="img/icon/Folder-RAR-icon.png"
                                                                 alt="thumbnail" class="img-thumbnail"
                                                                 style="width: 30px;height: 30px;">
                                                         </i>[lehait.net]Microsoft.Activation.Script.v1.1.zip</a>
@@ -375,13 +349,9 @@
                                                 <div style="background-color: wheat">
                                                     <strong style="font-size: 10px">Vinh (20/08/2020 10:20:10) :
                                                     </strong>
-                                                    <br /> đã đến chỗ lấy hàng đã đến chỗ lấy hàng đã đến chỗ lấy hàng
-                                                    đã đến chỗ lấy hàng đã đến chỗ lấy hàng đã đến chỗ lấy hàng đã đến
-                                                    chỗ lấy hàng
+                                                    <br /> đã đến chỗ lấy hàng đã đến chỗ lấy hàng đã đến chỗ lấy hàng đã đến chỗ lấy hàng đã đến chỗ lấy hàng đã đến chỗ lấy hàng đã đến chỗ lấy hàng
                                                     <br />
-                                                    <a style="font-size: 12px;color: blue;" id="save_file"
-                                                        href="https://drive.google.com/uc?id=1djFOTJechrKhuNIEs-5sQ2pVpOl_nUJW&amp;export=download"
-                                                        download=""><i class=""><img src="img/icon/Folder-RAR-icon.png"
+                                                    <a style="font-size: 12px;color: blue;" id="save_file" href="https://drive.google.com/uc?id=1djFOTJechrKhuNIEs-5sQ2pVpOl_nUJW&amp;export=download" download=""><i class=""><img src="img/icon/Folder-RAR-icon.png"
                                                                 alt="thumbnail" class="img-thumbnail"
                                                                 style="width: 30px;height: 30px;">
                                                         </i>[lehait.net]Microsoft.Activation.Script.v1.1.zip</a>
@@ -396,40 +366,32 @@
                                         <!--  ROW START -->
                                         <br />
                                         <div class="row">
-                                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
-                                                style="display: flex">
+                                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="display: flex">
                                                 <span class="badge badge-pill green" style="margin-right: 8px">
                                                     <i class="fas fa-comments fa-2x"></i>
                                                 </span>
-                                                <input type="text" id="exampleForm2" class="form-control"
-                                                    placeholder=".............." />
-                                                <button id="btn_test_111" type="button" class="SignUp btn btn-warning"
-                                                    style="left: 8px"> ĐĂNG </button>
+                                                <input type="text" id="exampleForm2" class="form-control" placeholder=".............." />
+                                                <button id="btn_test_111" type="button" class="SignUp btn btn-warning" style="left: 8px"> ĐĂNG </button>
                                             </div>
                                         </div>
                                         <!--  ROW END -->
                                         <!--  ROW FILE START -->
                                         <div class="row">
                                             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                                <form class="md-form" action="#"
-                                                    style="margin-top: 0px;margin-bottom: 0px;">
+                                                <form class="md-form" action="#" style="margin-top: 0px;margin-bottom: 0px;">
                                                     <div class="file-field">
                                                         <div class="btn btn-unique btn-sm float-left">
                                                             <span>Choose files</span>
-                                                            <input id='file_cmt_detail_with_cmt_mst_has_id_${idCmt}'
-                                                                type="file" multiple>
+                                                            <input id='file_cmt_detail_with_cmt_mst_has_id_${idCmt}' type="file" multiple>
                                                         </div>
                                                         <div class="file-path-wrapper">
-                                                            <input id='fileName_cmt_detail_with_cmt_mst_has_id_${idCmt}'
-                                                                class="file-path validate" type="text"
-                                                                placeholder="Upload one or more files">
+                                                            <input id='fileName_cmt_detail_with_cmt_mst_has_id_${idCmt}' class="file-path validate" type="text" placeholder="Upload one or more files">
                                                         </div>
                                                     </div>
                                                 </form>
                                             </div>
                                             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                                <div id='spinner_add_cmt_dlt_for_cmt_mst_has_id_XXX'
-                                                    class="spinner-border text-success" role="status" show>
+                                                <div id='spinner_add_cmt_dlt_for_cmt_mst_has_id_XXX' class="spinner-border text-success" role="status" show>
                                                 </div>
                                                 <div id='show_text_err_add_cmt_dlt_for_cmt_mst_has_id_XXX' class="red">
                                                     <strong>&nbsp;&nbsp;&nbsp;Lỗi!!</strong>
