@@ -90,13 +90,13 @@ $(document).ready(function() {
                                     <td>
                                         <!-- Material inline 1 -->
                                         <div class="form-check form-check-inline">
-                                            <input ${disabled_radio_user_login} radio_text='${radio_text_admin}' ${checkAdmin} userID='${userID}' type="radio" class="form-check-input" id="radio_userID_${userID}_1" name="grp_radio_userID_${userID}">
+                                            <input ${disabled_radio_user_login} id_btn_press_show_modal_yes_no='btn_show_modal_del_user_${userID}' radio_text='${radio_text_admin}' ${checkAdmin} userID='${userID}' type="radio" class="form-check-input" id="radio_userID_${userID}_1" name="grp_radio_userID_${userID}">
                                             <label class="form-check-label" for="radio_userID_${userID}_1">${radio_text_admin}</label>
                                         </div>
     
                                         <!-- Material inline 2 -->
                                         <div class="form-check form-check-inline">
-                                            <input ${disabled_radio_user_login} radio_text='${radio_text_staff}' ${checkStaff} userID='${userID}' type="radio" class="form-check-input" id="radio_userID_${userID}_2" name="grp_radio_userID_${userID}">
+                                            <input ${disabled_radio_user_login} id_btn_press_show_modal_yes_no='btn_show_modal_del_user_${userID}' radio_text='${radio_text_staff}' ${checkStaff} userID='${userID}' type="radio" class="form-check-input" id="radio_userID_${userID}_2" name="grp_radio_userID_${userID}">
                                             <label class="form-check-label" for="radio_userID_${userID}_2">${radio_text_staff}</label>
                                         </div>
     
@@ -139,8 +139,16 @@ $(document).ready(function() {
 
     function HandleUpdateAutrhorityUser(input_radio) {
         $('#modalFullCoverLoader').show();
+
+
+
         var userID = input_radio.attr('userID');
         var radio_text = input_radio.attr('radio_text');
+
+        var btn_show_modal_del_yes_no = $(`#${input_radio.attr('id_btn_press_show_modal_yes_no')}`);
+
+        $(`input[name='grp_radio_userID_${userID}']`).prop("disabled", true);
+
         var new_authority_value = '';
         if (radio_text == radio_text_admin) {
             new_authority_value = '1';
@@ -166,17 +174,19 @@ $(document).ready(function() {
                 if (response.errno != undefined) {
                     // ERR
 
-                    ShowBtnErr();
+                    ShowBtnErr(btn_show_modal_del_yes_no);
                 } else {
                     // SUCCESS
-                    // InitForm();
+                    ShowBtnSuccess(btn_show_modal_del_yes_no);
 
                 } // }// end else SUCCESS
+                $(`input[name='grp_radio_userID_${userID}']`).prop("disabled", false);
                 $('#modalFullCoverLoader').hide();
             })
             .catch(function(error) {
+                $(`input[name='grp_radio_userID_${userID}']`).prop("disabled", false);
                 $('#modalFullCoverLoader').hide();
-                ShowBtnErr();
+                ShowBtnErr(btn_show_modal_del_yes_no);
             });
 
     }
@@ -238,6 +248,23 @@ $(document).ready(function() {
         }, 2000);
     }
 
+
+    function ShowBtnSuccess(btn_show_modal_del_yes_no) {
+        var current_html_btn = btn_show_modal_del_yes_no.html();
+        var current_class_btn = btn_show_modal_del_yes_no.attr('class');
+        btn_show_modal_del_yes_no.prop("disabled", true);
+        btn_show_modal_del_yes_no.attr('class', 'animated heartBeat infinite fast btn_Delete_user_out_system btn btn-success btn-sm btn-rounded waves-effect waves-light');
+        btn_show_modal_del_yes_no.html('<i class="far fa-thumbs-up cc_pointer pr-2 pt-1" aria-hidden="true"></i>THÀNH CÔNG');
+
+        setTimeout(() => {
+            btn_show_modal_del_yes_no.attr('class', current_class_btn);
+            btn_show_modal_del_yes_no.html(current_html_btn);
+            btn_show_modal_del_yes_no.prop("disabled", false);
+
+        }, 1500);
+    }
+
+
     $("#btn_modal_yes_del_user").click(function(e) {
 
         $('#modalFullCoverLoader').show();
@@ -288,6 +315,7 @@ $(document).ready(function() {
                         btn_show_modal_del_yes_no.html('<i class="fas fa-plane pr-2 pt-1" aria-hidden="true"></i>XOÁ');
                         btn_show_modal_del_yes_no.attr('val_xoa', '1');
                     }
+                    ShowBtnSuccess(btn_show_modal_del_yes_no);
 
                 } // }// end else SUCCESS
                 $('#modalFullCoverLoader').hide();
@@ -299,5 +327,12 @@ $(document).ready(function() {
             });
     });
 
+
+    $("#input_text_search").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#tab_list_user tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
 
 });

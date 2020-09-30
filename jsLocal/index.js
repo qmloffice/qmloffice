@@ -367,7 +367,7 @@ $(document).ready(function() {
                         $('#show_info_user').hide();
                         $("#path_folder").html(`QML: Xin Chào ${_email}, <span class="badge badge-pill pink"><i class="fas fa-wheelchair" aria-hidden="true"></i>   bạn không thể hoạt động được nữa.</span>`);
                     } else {
-                        if (GV_STORE_SIGN_IN_INFO.authority_code == GV_AUT_CODE_MASTER) {
+                        if (response.data[0].authority_code == GV_AUT_CODE_MASTER) {
                             $("#jstree_div_all").css("display", "");
                             InitControlForUserADMIN();
                             b2TaskTreeAssignDataAfterLogin();
