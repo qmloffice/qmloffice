@@ -228,6 +228,7 @@ $(document).ready(function() {
 
     if (authority_code == GV_AUT_CODE_MASTER) {
         $('#btn_open_uermanager_page').show();
+        $('#btn_ADMIN_want_to_see_jobs').show();
     }
 
 
@@ -306,13 +307,14 @@ $(document).ready(function() {
 
     // store to array_ALL_user
     GetAllUserFromDB();
-    CheckUserIsdeleted_And_Init_Control(id, email);
+    CheckUserIsdeleted_And_Init_Control(id, email, 0);
 
     ////////////////////////////////////////////////
     ////////////////////////////////////////////////  START LOCAL FUNCTION
     ////////////////////////////////////////////////
 
-    function CheckUserIsdeleted_And_Init_Control(_idUser, _email) {
+    function CheckUserIsdeleted_And_Init_Control(_idUser, _email, ADMIN_want_to_see_jobs) {
+
         var data = {
             id: _idUser,
         };
@@ -337,13 +339,22 @@ $(document).ready(function() {
                         $('#show_info_user').hide();
                         $("#path_folder").html(`QML: Xin Chào ${_email}, <span class="badge badge-pill pink"><i class="fas fa-wheelchair" aria-hidden="true"></i>   bạn không thể hoạt động được nữa.</span>`);
                     } else {
+
+                        var showFinished = false;
+
                         if (response.data[0].authority_code == GV_AUT_CODE_MASTER) {
-                            $("#jstree_div_all").css("display", "");
-                            InitControlForUserADMIN();
-                            b2TaskTreeAssignDataAfterLogin();
+
+                            if (ADMIN_want_to_see_jobs == 1) {
+                                InitControlForUserStaff();
+                            } else {
+                                $("#jstree_div_all").css("display", "");
+                                InitControlForUserADMIN();
+                                b2TaskTreeAssignDataAfterLogin();
+                            }
                         } else {
                             InitControlForUserStaff();
                         }
+
                     }
                 } // }// end else SUCCESS
             })
@@ -351,6 +362,21 @@ $(document).ready(function() {
                 location.href = GV_Server_Address + GV_auth_google;
             });
     }
+
+
+    $('#btn_ADMIN_want_to_see_jobs').click(function(e) {
+
+        var func = $(this).attr('function');
+        if (func == 'show_jobs') {
+            $(this).attr('function', 'manager');
+        } else {
+            $(this).attr('function', 'show_jobs');
+        }
+
+        $('#tab_showtask_staff').find("tbody tr").html('');
+
+        CheckUserIsdeleted_And_Init_Control(id, email, 1)
+    });
 
     var setsetIntervalCheckUserIsdeleted = setInterval(function() {
         CheckUserIsdeleted(id, email);
@@ -892,15 +918,7 @@ $(document).ready(function() {
 
     // call in b2TaskTreeInit()
     function HandleSaveMenuAfterAction(text) {
-        $("#jstree_div_status").html(
-            `  
-            <button class="btn btn-primary" type="button">
-            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>` +
-            text +
-            `
-             </button>
-          `
-        );
+        $("#btn_show_tree_status").html(`<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> ${text}`);
 
         auto_SaveMenuTaskTree = setInterval(function() {
             updateMENUtoDB();
@@ -933,12 +951,7 @@ $(document).ready(function() {
             url: GV_Server_Address + "/updatemenuafteraction",
             success: function(data) {
                 if (data.errno != undefined) {} else {
-                    $("#jstree_div_status").html(`  
-                    <button class="btn btn-primary" type="button">
-                    <span class="" role="status" aria-hidden="true"></span>
-                    SAVED
-                  </button>
-                  `);
+                    $('#btn_show_tree_status').html(` <span class="" role="status" aria-hidden="true"></span>Saved`)
                 }
             },
             error: function(err) {
