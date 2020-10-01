@@ -196,21 +196,9 @@ $(document).ready(function() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    // START PROJECT HERE
+    // START PROJECT HERE
+    // START PROJECT HERE
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -231,16 +219,7 @@ $(document).ready(function() {
     const authority_code = urlParams.get("authority_code");
     const id = urlParams.get("id");
     const menu_id = urlParams.get("menu_id");
-    // const delete_system = urlParams.get("delete_system");
 
-    // if (delete_system == '1') {
-
-    //     $("#btn_signOut").click(function(e) {
-    //         GF_HandleSignOut();
-    //     });
-    //     $("#path_folder").html(`QML: Xin Chào ${email}, <span class="badge badge-pill pink"><i class="fas fa-wheelchair" aria-hidden="true"></i>   bạn không thể hoạt động được nữa.</span>`);
-    //     return;
-    // }
     var label_user = '<span class="badge badge-danger">ADMIN</span>';
 
     if (authority_code != GV_AUT_CODE_MASTER) {
@@ -255,15 +234,6 @@ $(document).ready(function() {
 
     $("#show_info_user").html(`QML: Xin Chào ${label_user} ${full_name} (${email})`);
     $("#path_folder").html(`QML: Xin Chào ${full_name} (${email})`);
-    // console.log(accesstoken);
-    // console.log(googleID);
-    // console.log(full_name);
-    // console.log(pic_url);
-    // console.log(email);
-    // console.log(authority_code);
-    // console.log(id);
-
-
 
 
     GV_STORE_SIGN_IN_INFO.accesstoken = accesstoken;
@@ -319,6 +289,7 @@ $(document).ready(function() {
     $("#11111").hide();
     $("#tab_showtask").hide();
 
+    // DELETE START
     // //GF_HandleSignInSuccessBackToSignInWhenLoginFail();
 
     // GV_STORE_SIGN_IN_INFO = $.jStorage.get(GV_CK_SIGNIN_STORE_INFO);
@@ -326,6 +297,7 @@ $(document).ready(function() {
     // if (GV_STORE_SIGN_IN_INFO == undefined) {
     //     //GF_HandleSignOut();
     // }
+    // DELETE END
 
     if (email == 'qml.babymommycare@ptd.edu.vn') {
         $('#div_assign_using_folder_google_drive').show();
@@ -335,8 +307,6 @@ $(document).ready(function() {
     // store to array_ALL_user
     GetAllUserFromDB();
     CheckUserIsdeleted_And_Init_Control(id, email);
-
-
 
     ////////////////////////////////////////////////
     ////////////////////////////////////////////////  START LOCAL FUNCTION

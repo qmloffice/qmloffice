@@ -12,7 +12,6 @@ var run_on_env = 'server'; // local <=> server
 
 if (run_on_env == 'local') {
     GV_Server_Address = "http://localhost:3000";
-
     GV_link_index_page = '/';
     GV_link_userManager = "/usermanager.html";
     GV_link_detail = "/detail.html";
@@ -22,10 +21,8 @@ if (run_on_env == 'local') {
     // server
     //GV_link_detail = "/WEB113/detail.html";
     //GV_link_page404 = "/WEB113/page404.html";
-    // GV_Server_Address = "https://enigmatic-earth-35060.herokuapp.com"; // lqvinh.hsu@gmail.com
-    GV_Server_Address = "https://officeonlinetest.herokuapp.com"; //qmloffice.babymommycare@gmail.com
-
-
+    // GV_Server_Address = "https://enigmatic-earth-35060.herokuapp.com"; //  account heroku : lqvinh.hsu@gmail.com
+    GV_Server_Address = "https://officeonlinetest.herokuapp.com"; // account heroku : qmloffice.babymommycare@gmail.com
     GV_link_index_page = '/qmloffice/';
     GV_link_userManager = "/qmloffice/usermanager.html";
     GV_link_detail = "/qmloffice/detail.html";
