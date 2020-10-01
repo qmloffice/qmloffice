@@ -22,7 +22,9 @@ if (run_on_env == 'local') {
     // server
     //GV_link_detail = "/WEB113/detail.html";
     //GV_link_page404 = "/WEB113/page404.html";
-    GV_Server_Address = "https://enigmatic-earth-35060.herokuapp.com";
+    // GV_Server_Address = "https://enigmatic-earth-35060.herokuapp.com"; // lqvinh.hsu@gmail.com
+    GV_Server_Address = "https://officeonlinetest.herokuapp.com"; //qmloffice.babymommycare@gmail.com
+
 
     GV_link_index_page = '/qmloffice/';
     GV_link_userManager = "/qmloffice/usermanager.html";
@@ -293,7 +295,7 @@ function GF_GetDateFrom_SysDate(formatType) {
     // dd-mm-yyyy hh:mm:se
     else if (formatType == 2) {
         text = dd + "-" + MM + "-" + yyyy + " " + hh + ":" + mm + ":" + se;
-    } else if (formatType == 3) { } else if (formatType == 4) { }
+    } else if (formatType == 3) {} else if (formatType == 4) {}
 
     return text;
 }
@@ -436,7 +438,7 @@ function GF_GetLinkImgForIconFile(fileName) {
     return iconLinkType;
 }
 
-$.fn.GF_focusEndDivEditable = function () {
+$.fn.GF_focusEndDivEditable = function() {
     $(this).focus();
     var tmp = $('<span />').appendTo($(this)),
         node = tmp.get(0),
@@ -469,7 +471,7 @@ function GF_CheckAccGoogleAvaibleNow(accesstoken1) {
                 data1,
             },
         })
-        .then(function (response) {
+        .then(function(response) {
             if (response.errno != undefined) {
                 // ERR
                 location.href = GV_Server_Address + GV_auth_google;
@@ -482,7 +484,7 @@ function GF_CheckAccGoogleAvaibleNow(accesstoken1) {
                 }
             } // }// end else SUCCESS
         })
-        .catch(function (error) {
+        .catch(function(error) {
             location.href = GV_Server_Address + GV_auth_google;
         });
 }
