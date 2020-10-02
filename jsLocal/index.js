@@ -212,6 +212,8 @@ $(document).ready(function() {
         location.href = GV_Server_Address + GV_auth_google;
     }
 
+
+
     const googleID = urlParams.get("googleID");
     const full_name = urlParams.get("name");
     const pic_url = urlParams.get("pic_url");
@@ -303,11 +305,24 @@ $(document).ready(function() {
     if (email == 'qml.babymommycare@ptd.edu.vn') {
         $('#div_assign_using_folder_google_drive').show();
     }
+
+
     GF_CheckAccGoogleAvaibleNow(accesstoken);
 
     // store to array_ALL_user
     GetAllUserFromDB();
     CheckUserIsdeleted_And_Init_Control(id, email, 0);
+
+    var b_show_main_form = false;
+
+    var interValShowFormMain = setInterval(() => {
+        if (b_show_main_form == true) {
+
+            clearInterval(interValShowFormMain);
+            $('#body').show();
+        }
+    }, 1000);
+
 
     ////////////////////////////////////////////////
     ////////////////////////////////////////////////  START LOCAL FUNCTION
@@ -349,12 +364,11 @@ $(document).ready(function() {
                             } else {
                                 $("#jstree_div_all").css("display", "");
                                 InitControlForUserADMIN();
-                                b2TaskTreeAssignDataAfterLogin();
+                                b2TaskTreeAssignDataAfterLogin(); // show form when login success here in this function
                             }
                         } else {
                             InitControlForUserStaff();
                         }
-
                     }
                 } // }// end else SUCCESS
             })
@@ -529,6 +543,12 @@ $(document).ready(function() {
                                     var adddressInFo = $(this);
                                     HandleClickOnTaskDetail(adddressInFo);
                                 });
+
+                                if ($('#body').attr('show') == '0') {
+                                    $('#body').attr('show', '1');
+                                    $('#body').show();
+                                }
+
                                 // assign grp_task_detail to table list grp_task_detail END
 
                             } // }// end else SUCCESS
@@ -816,8 +836,13 @@ $(document).ready(function() {
                 var v = txtSearchTree.val();
                 $("#jstree_div").jstree(true).search(v);
             }, 250);
+
         });
     }
+
+    var set_Interval_TreeComplete = undefined;
+    var setInterval_show_form_main = undefined;
+
     // back up in NOTE_2.cs
     function b2TaskTreeAssignDataAfterLogin() {
         var data = {
@@ -849,11 +874,11 @@ $(document).ready(function() {
                         $.jStorage.get(GV_KEY_STORE_TASK_GRP_TASK_DETAIL) != null &&
                         $.jStorage.get(GV_KEY_STORE_TASK_GRP_TASK_DETAIL) != undefined
                     ) {
-                        var setTreeComplete = setInterval(function() {
+                        set_Interval_TreeComplete = setInterval(function() {
                             if ($("#jstree_div").jstree(true).settings.core.data.length == 1) {
 
                             } else {
-                                clearInterval(setTreeComplete);
+                                clearInterval(set_Interval_TreeComplete);
                                 var arr_ID_Parents =
                                     GV_STORE_TASK_GRP_TASK_DETAIL.arr_ID_Parents_Folder;
                                 var textP = "";
@@ -886,11 +911,11 @@ $(document).ready(function() {
                                 ShowListTitleWhenClickOnFolder(cur_folderID);
                                 ShowGrpTaskAndTaskDetail();
 
-                                var setsetInterval = setInterval(function() {
+                                setInterval_show_form_main = setInterval(function() {
                                     if ($('#list_title_in_one_folder li').length <= 0) {
                                         // DO NOT CODE HERE
                                     } else {
-                                        clearInterval(setsetInterval);
+                                        clearInterval(setInterval_show_form_main);
                                         // code when you need
                                         var li_item = undefined;
                                         var cntthh = 1;
@@ -905,15 +930,33 @@ $(document).ready(function() {
                                             HandleClickOn_Each_Title(li_item);
                                         }
 
+                                        ShowFormMain();
+
                                     }
-                                }, 500)
+                                }, 600)
                             }
                         }, 600);
                     }
+
+                    if (
+                        $.jStorage.get(GV_KEY_STORE_TASK_GRP_TASK_DETAIL) == null ||
+                        $.jStorage.get(GV_KEY_STORE_TASK_GRP_TASK_DETAIL) == undefined
+                    ) {
+                        ShowFormMain();
+                    }
+
                 }
             },
             error: function(err) {},
         });
+    }
+
+    function ShowFormMain() {
+        // show form main
+        if ($('#body').attr('show') == '0') {
+            $('#body').attr('show', '1');
+            $('#body').show();
+        }
     }
 
     // call in b2TaskTreeInit()
