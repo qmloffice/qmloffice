@@ -771,10 +771,11 @@ $(document).ready(function() {
                 if (arrFile.length > 0) {
                     $.each(arrFile, function(indexFile, file) {
 
+                        // var linkDown = file.file_link_download.replace('uc1id', 'uc?id');
+                        var linkDown = `https://drive.google.com/uc?id=${file.id}&export=download`;
                         var templateFile = `
                         <br/>
-                        <a style="font-size: 12px;color: blue;" id="save_file" href="${file.file_link_download
-                            }" download="">
+                        <a style="font-size: 12px;color: blue;" id="save_file" href="${linkDown}" download="">
                                       <i class=""><img src="${GF_GetLinkImgForIconFile(file.file_name)}" alt="thumbnail" class="img-thumbnail" style="width: 30px;height: 30px;"> </i>
                             ${file.file_name} (${GF_GetTextSizeFile_By_SizeFileByte(file.file_size_byte)})
                         </a>
