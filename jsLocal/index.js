@@ -435,10 +435,9 @@ $(document).ready(function() {
             });
     }
 
-
-
     function InitControlForUserStaff() {
 
+        $('#modalFullCoverLoader').show();
         var data = {
             id: GV_STORE_SIGN_IN_INFO.id,
         };
@@ -454,6 +453,7 @@ $(document).ready(function() {
                 if (response.errno != undefined) {
                     // ERR
                     GF_ShowToastrWarning('MAT KET NOI INTERNET!!');
+                    $('#modalFullCoverLoader').hide();
                 } else {
                     // SUCCESS
 
@@ -489,6 +489,7 @@ $(document).ready(function() {
                             if (response2.errno != undefined) {
                                 // ERR
                                 GV_STORE_TASK_GRP_TASK_DETAIL.Notify_By_TaskDtlID_And_userLogin = [];
+                                $('#modalFullCoverLoader').hide();
                             } else {
                                 // SUCCESS
                                 if (response2.data.length > 0) {
@@ -551,29 +552,19 @@ $(document).ready(function() {
 
                                 // assign grp_task_detail to table list grp_task_detail END
 
+                                $('#modalFullCoverLoader').hide();
                             } // }// end else SUCCESS
                         })
                         .catch(function(error) {
-                            console.log(error);
+                            $('#modalFullCoverLoader').hide();
                         });
 
                     // Get Notify End 
 
-
-
-
-
-
-
-
-
-
-
-
                 } // }// end else SUCCESS
             })
             .catch(function(error) {
-                console.log(error);
+                $('#modalFullCoverLoader').hide();
             });
 
 
