@@ -874,57 +874,65 @@ $(document).ready(function() {
                                     GV_STORE_TASK_GRP_TASK_DETAIL.arr_ID_Parents_Folder;
                                 var textP = "";
                                 array_key_store_node = [];
-                                // set color of all parents when back from detail Start
-                                $.each(arr_ID_Parents, function(index, valueID) {
-                                    if (valueID == "#") {
-                                        return;
-                                    }
-                                    var node = $("#jstree_div").jstree(true).get_node(valueID);
-                                    $("#" + valueID).css({
-                                        color: "yellow",
-                                        "background-color": "blue",
-                                    });
-                                    array_key_store_node.push(valueID);
 
-                                    textP = textP + "/" + node.text;
-                                    cur_pathFolder =
-                                        cur_pathFolder +
-                                        (cur_pathFolder === "" ? "" : " > ") +
-                                        node.text;
-                                });
+                                if (arr_ID_Parents != undefined && arr_ID_Parents.length > 0) {
+                                    // set color of all parents when back from detail Start
+                                    $.each(arr_ID_Parents, function(index, valueID) {
+                                        if (valueID == "#") {
+                                            return;
+                                        }
+                                        var node = $("#jstree_div").jstree(true).get_node(valueID);
+                                        $("#" + valueID).css({
+                                            color: "yellow",
+                                            "background-color": "blue",
+                                        });
+                                        array_key_store_node.push(valueID);
+
+                                        textP = textP + "/" + node.text;
+                                        cur_pathFolder =
+                                            cur_pathFolder +
+                                            (cur_pathFolder === "" ? "" : " > ") +
+                                            node.text;
+                                    });
+                                }
+
 
                                 $("#path_folder").html(cur_pathFolder);
                                 // set color of all parents when back from detail END
 
                                 cur_folderID = GV_STORE_TASK_GRP_TASK_DETAIL.cur_folderID;
                                 cur_titleID = GV_STORE_TASK_GRP_TASK_DETAIL.cur_titleID;
+                                if (cur_folderID == undefined) {
+                                    ShowFormMain();
+                                } else {
+                                    ShowListTitleWhenClickOnFolder(cur_folderID);
+                                    ShowGrpTaskAndTaskDetail();
 
-                                ShowListTitleWhenClickOnFolder(cur_folderID);
-                                ShowGrpTaskAndTaskDetail();
-
-                                setInterval_show_form_main = setInterval(function() {
-                                    if ($('#list_title_in_one_folder li').length <= 0) {
-                                        // DO NOT CODE HERE
-                                    } else {
-                                        clearInterval(setInterval_show_form_main);
-                                        // code when you need
-                                        var li_item = undefined;
-                                        var cntthh = 1;
-                                        $('#list_title_in_one_folder li').each(function() {
-                                            var li_Tag = $(this);
-                                            if (li_Tag.attr('id') == cur_titleID && cntthh == 1) {
-                                                li_item = $(this);
-                                                cntthh++;
+                                    setInterval_show_form_main = setInterval(function() {
+                                        if ($('#list_title_in_one_folder li').length <= 0) {
+                                            // DO NOT CODE HERE
+                                        } else {
+                                            clearInterval(setInterval_show_form_main);
+                                            // code when you need
+                                            var li_item = undefined;
+                                            var cntthh = 1;
+                                            $('#list_title_in_one_folder li').each(function() {
+                                                var li_Tag = $(this);
+                                                if (li_Tag.attr('id') == cur_titleID && cntthh == 1) {
+                                                    li_item = $(this);
+                                                    cntthh++;
+                                                }
+                                            });
+                                            if (li_item != undefined) {
+                                                HandleClickOn_Each_Title(li_item);
                                             }
-                                        });
-                                        if (li_item != undefined) {
-                                            HandleClickOn_Each_Title(li_item);
+
+                                            ShowFormMain();
+
                                         }
+                                    }, 600)
+                                }
 
-                                        ShowFormMain();
-
-                                    }
-                                }, 600)
                             }
                         }, 600);
                     }
