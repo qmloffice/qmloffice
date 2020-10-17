@@ -200,27 +200,83 @@ $(document).ready(function() {
     // START PROJECT HERE
     // START PROJECT HERE
 
+
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
 
-    const accesstoken = urlParams.get("accesstoken");
+   
     const accesstoken_expires_in = '';
+  
 
+    // check accesstoken in this function
+    let googleID = urlParams.get("googleID");
+    let accesstoken = urlParams.get("accesstoken");
+    let full_name = urlParams.get("name");
+    let pic_url = urlParams.get("pic_url");
+    let email = urlParams.get("email");
+    let authority_code = urlParams.get("authority_code");
+    let id = urlParams.get("id");
+    let menu_id = urlParams.get("menu_id");
+
+    
+    if (accesstoken == '' || accesstoken == undefined || accesstoken == null) {
+        if (
+            $.jStorage.get(GV_KEY_STORE_TASK_GRP_TASK_DETAIL) != null &&
+            $.jStorage.get(GV_KEY_STORE_TASK_GRP_TASK_DETAIL) != undefined
+        ) {
+            GV_STORE_TASK_GRP_TASK_DETAIL = $.jStorage.get(
+                GV_KEY_STORE_TASK_GRP_TASK_DETAIL
+            );
+       
+            accesstoken = GV_STORE_TASK_GRP_TASK_DETAIL.accesstoken;
+            googleID = GV_STORE_TASK_GRP_TASK_DETAIL.googleID;
+            full_name = GV_STORE_TASK_GRP_TASK_DETAIL.name;
+            pic_url = GV_STORE_TASK_GRP_TASK_DETAIL.pic_url;
+            email = GV_STORE_TASK_GRP_TASK_DETAIL.email;
+            authority_code = GV_STORE_TASK_GRP_TASK_DETAIL.authority_code
+            id = GV_STORE_TASK_GRP_TASK_DETAIL.id;
+            menu_id = GV_STORE_TASK_GRP_TASK_DETAIL.menu_id;
+        }
+    }
+
+    // Check again if not accestoken, need to login GG
     if (accesstoken == '' || accesstoken == undefined || accesstoken == null) {
 
-        $.jStorage.deleteKey(GV_KEY_STORE_TASK_GRP_TASK_DETAIL);
-        location.href = GV_Server_Address + GV_auth_google;
+            location.href = GV_Server_Address + GV_auth_google;
+            return;
+    }
+
+    if (accesstoken != '' && accesstoken != undefined && accesstoken != null) {
+      
+        if (
+            $.jStorage.get(GV_KEY_STORE_TASK_GRP_TASK_DETAIL) != null &&
+            $.jStorage.get(GV_KEY_STORE_TASK_GRP_TASK_DETAIL) != undefined
+        ) {
+            GV_STORE_TASK_GRP_TASK_DETAIL = $.jStorage.get(
+                GV_KEY_STORE_TASK_GRP_TASK_DETAIL
+            );
+        }
+
+        GV_STORE_TASK_GRP_TASK_DETAIL.accesstoken = accesstoken;
+        GV_STORE_TASK_GRP_TASK_DETAIL.googleID = googleID;
+        GV_STORE_TASK_GRP_TASK_DETAIL.name = full_name;
+        GV_STORE_TASK_GRP_TASK_DETAIL.pic_url = pic_url;
+        GV_STORE_TASK_GRP_TASK_DETAIL.email = email;
+        GV_STORE_TASK_GRP_TASK_DETAIL.authority_code = authority_code;
+        GV_STORE_TASK_GRP_TASK_DETAIL.id = id;
+        GV_STORE_TASK_GRP_TASK_DETAIL.menu_id = menu_id;
+
+        GF_SetjStorage(
+            GV_KEY_STORE_TASK_GRP_TASK_DETAIL,
+            GV_STORE_TASK_GRP_TASK_DETAIL
+        );
+
     }
 
 
+   
 
-    const googleID = urlParams.get("googleID");
-    const full_name = urlParams.get("name");
-    const pic_url = urlParams.get("pic_url");
-    const email = urlParams.get("email");
-    const authority_code = urlParams.get("authority_code");
-    const id = urlParams.get("id");
-    const menu_id = urlParams.get("menu_id");
+
 
     var label_user = '<span class="badge badge-danger">ADMIN</span>';
 
@@ -268,10 +324,10 @@ $(document).ready(function() {
             GV_KEY_STORE_TASK_GRP_TASK_DETAIL
         );
 
-        if (GV_STORE_TASK_GRP_TASK_DETAIL.GG_googleID != googleID) {
-            $.jStorage.deleteKey(GV_KEY_STORE_TASK_GRP_TASK_DETAIL);
-            GV_STORE_TASK_GRP_TASK_DETAIL = {};
-        }
+        // if (GV_STORE_TASK_GRP_TASK_DETAIL.GG_googleID != googleID) {
+        //     $.jStorage.deleteKey(GV_KEY_STORE_TASK_GRP_TASK_DETAIL);
+        //     GV_STORE_TASK_GRP_TASK_DETAIL = {};
+        // }
 
         if (GV_STORE_TASK_GRP_TASK_DETAIL.verifyGoogleAcc == "true") {
             GV_STORE_TASK_GRP_TASK_DETAIL.verifyGoogleAcc = "false";
@@ -474,7 +530,7 @@ $(document).ready(function() {
                     // Get list grp_detail_id End
 
 
-                    // Get Notify Start 
+                    // Get Notify Start
                     var data = {
                         list_task_grp_dtl_id: list_task_grp_dtl_id,
                         user_login_id: GV_STORE_SIGN_IN_INFO.id,
@@ -527,7 +583,7 @@ $(document).ready(function() {
                                               <i class="fas fa-reply purple-text"></i>  ${cnt}
                                           </td>
                                           <td class="text-left text-wrap">
-                                            
+
                                               <a href="${GV_link_detail}" group_id="${data.grp_id}" group_name="${data.group_name}" task_detail_name="${data.task_grp_dtl_name}" creator_name='${data.creator_name}' creator_time='${timee}' task_grp_detail = ${data.task_grp_detail_id} class="show_task_grp_detail font-weight-bold blue-text">${data.task_grp_dtl_name} ${notifyText}</a>
                                               <div>
                                                   <span class="badge purple ">Người tạo : ${data.creator_name}</span></br>
@@ -559,7 +615,7 @@ $(document).ready(function() {
                             $('#modalFullCoverLoader').hide();
                         });
 
-                    // Get Notify End 
+                    // Get Notify End
 
                 } // }// end else SUCCESS
             })
@@ -1428,12 +1484,12 @@ $(document).ready(function() {
                 );
                 var template = `
               <tr style="background-color:rgb(21, 151, 75); color: white;">
-      
+
                   <td colspan="1" style="font-size: larger;">1</td>
                   <td colspan="4" style="font-size: larger;" class="text-left">${TASK_GROUP.group_name}, tạo lúc : ${textTime}</td>
                   <td colspan="1" style="padding: 0px !important; margin: 0px !important;"><button type="button" id="${TASK_GROUP.id}" class="btn_create_task_group btn btn-success px-3 waves-effect waves-light" data-toggle="" data-target="#modalRegisterTaskGroup"><i class="far fa-user pr-2"></i>THÊM NHÓM</button></td>
               </tr>
-      
+
               <tr id="row_header_${TASK_GROUP.id}"  group_id="" class="row_task_header" style="background-color: deepskyblue;">
                   <th style="width:50px;">Status</th>
                   <th style="width:300px;" class="text-left"><i class="fas fa-comment-dollar black-text"></i> Topic</th>
@@ -1446,7 +1502,7 @@ $(document).ready(function() {
                 $("#tab_showtask tbody").append(template);
             });
         } else {
-            $(`<button type="button" id="11111" class="btn_create_task_group btn btn-success px-3 waves-effect waves-light" data-toggle="" 
+            $(`<button type="button" id="11111" class="btn_create_task_group btn btn-success px-3 waves-effect waves-light" data-toggle=""
                 data-target="#modalRegisterTaskGroup"><i class="far fa-user pr-2"></i>THÊM NHÓM</button>`).insertAfter(
                 "#path_folder"
             );
@@ -1541,14 +1597,14 @@ $(document).ready(function() {
                                             <i class="fas fa-reply purple-text"></i>
                                         </td>
                                         <td class="text-left text-wrap">
-                                            
+
                                             <a href="${GV_link_detail}" group_id="${TASK_GROUP_DETAIL.group_id}" group_name="${TASK_GROUP_DETAIL.group_name}" task_detail_name="${TASK_GROUP_DETAIL.task_grp_dtl_name}" creator_name='${creator.displayName}' creator_time='${create_time}' task_grp_detail = ${TASK_GROUP_DETAIL.TASK_GROUP_DETAIL_ID} class="show_task_grp_detail font-weight-bold blue-text">${task_grp_dtl_name}  ${notifyText}</a>
                                             <div>
                                                 <span class="badge purple ">Người tạo : ${creator.displayName}</span></br>
                                                 <span class="badge badge-info">Lúc : ${create_time}</span>
                                             </div>
                                         </td>
-                        
+
                                         <td class="text-left text-wrap">
                                                 ${templateName}
                                         </td>
@@ -1646,14 +1702,14 @@ $(document).ready(function() {
                 fullname = user.lastname + " " + user.firstname;
             }
 
-            var template = `                
+            var template = `
                     <div class="form-check modal_sign_up_task_grp_detail_checkbox_selected_user">
                             <input type="checkbox" class="form-check-input" id="${user.id}">
                             <label class="form-check-label" for="${user.id}"> <i class="fas fa-user prefix grey-text"></i> ${fullname}</label>
                     </div>`;
 
             if (user.id == GV_STORE_SIGN_IN_INFO.id) {
-                template = `                
+                template = `
                 <div class="form-check modal_sign_up_task_grp_detail_checkbox_selected_user disabled">
                 <span class="badge badge-info">BẠN</span>
                         <input type="checkbox" class="form-check-input" id="${user.id}" checked>
@@ -1832,7 +1888,7 @@ $(document).ready(function() {
 
         var newTr = ` <tr>
                     <th scope="row">
-                    
+
                         <span class="badge blue mx-1">${rowCountNotHeader + 1
             }</span>
                     </th>
