@@ -365,7 +365,7 @@ $(document).ready(function() {
 
     GF_CheckAccGoogleAvaibleNow(accesstoken);
 
-    // store to array_ALL_user
+    // store to array_ALL_user 
     GetAllUserFromDB();
     CheckUserIsdeleted_And_Init_Control(id, email, 0);
 
