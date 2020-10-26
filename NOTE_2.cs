@@ -1,3 +1,54 @@
+=====================================================S
+Cách thức: vào link: https://id.matbao.net/users/login/
+
+User: MB1544879
+Chọn mục “Tìm lại” tại dòng – Quên mật khẩu   
+
+Sau đó, nhập lại MB1544879 và nhấp “GỬI”
+
+Hệ thông sẽ gửi mail reset mật khẩu về mail: quanmanlinh@gmail.com
+
+kiểm tra mail và tạo lại mật khẩu:
+
+Đăng nhập lại vào trang id.matbao.net bằng user và mật khẩu vừa tạo
+
+User: MB1544879(tên miền) - MB1615154 (Cpanel- email : qml.babymommycare@gmail.com 0315767761- DB)
+Pass: BabyCare123$$
+
+Cpanel : 
+User : bab11636_QMLadmi 
+pass : -peLj^cR#J~E -peLj^cR#J~E   -peLj^cR#J~E  {ym(d)bXpRM[  {ym(d)bXpRM[
+
+
+================================================================ 1
+http://babymommycare.com/admin
+User: sysadmin
+Pass: &7Jy2Tavdb3u7lO%XZ
+================================================================ 2
+file zilla : 
+host : babymommycare.com  
+User : test@babymommycare.com 
+pass : test@babymommycare.com
+================================================================ 3
+https://manage.matbao.net/dashboard/
+1. Cpanel
+user : MB1615154
+pass : BabyCare123$$
+2. tên miền
+user : MB1544879
+pass : BabyCare123$$
+3. DB mysql
+================================================================ 4
+GIT hub code trang web : 
+       qmloffice.site
+       qmloffice.babymommycare@gmail.com  0932900606Baby@
+
+heroku : qmloffice.babymommycare@gmail.com
+        0932900606Baby@
+================================================================ END
+
+
+
 // https://github.com/lqvinh2/QMLAdmin.git
 
 // https://github.com/carhartl/jquery-cookie
