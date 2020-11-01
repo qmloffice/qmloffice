@@ -129,7 +129,8 @@ if (GV_auth_google == '/auth/login/googleLocal') {
 
     //linkToHost = `https://qmloffice.github.io/qmloffice`;
     linkToHost = `http://qmloffice.site`;
-    app.listen(process.env.PORT, "0.0.0.0", () => {
+	port111 = process.env.PORT | 3000;
+    app.listen(port111, "0.0.0.0", () => {
         console.log(`APP listening on port  ${process.env.PORT}!`);
     });
 }
