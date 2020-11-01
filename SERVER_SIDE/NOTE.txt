@@ -1,0 +1,157 @@
+
+=========================================================SSH START
+	ssh-keygen -t rsa -b 4096 -C 'qmloffice.babymommycare@gmail.com'
+	eval $(ssh-agent -s)
+	git remote set-url origin git@github.com:qmloffice/qmloffice.git pass 123456
+	git push
+
+'/c/Users/user/.ssh/id_rsa': thu muc chua SSH
+
+=========================================================SSH END
+
+
+========================================================= HEROKU START
+acc 2  using : qmloffice.babymommycare@gmail.com (0932900606Baby@)
+
+GIT : https://git.heroku.com/officeonlinetest.git
+
+check link : (just run this link to say 'HELLO'):  https://officeonlinetest.herokuapp.com/ 
+
+log : heroku logs --tail --app officeonlinetest
+========================================================= HEROKU END
+
+
+
+
+
+
+
+======================================================================== GOOGLE ACCOUNT START
+// https://console.developers.google.com/apis/credentials?project=qmlofficepmh    acc : qml.babymommycare@ptd.edu.vn
+
+//   chỉ được : URIs http://officeonlinetest.herokuapp.com   , 
+//        Authorized redirect URIs http://officeonlinetest.herokuapp.com/auth/google/redirect
+
+//    LƯU Ý : chỉ được http , chứ KHÔNG được httpS (http's')
+======================================================================== GOOGLE ACCOUNT END
+
+
+
+
+
+
+
+
+
+========================================== mySQL START
+show full processlist;
+show global variables like '%interactive_timeout%'
+
+
+SET GLOBAL max_connections = 1000;
+
+mysql_reconnect 
+
+
+SELECT * FROM USER WHERE delete_system is null OR delete_system = '0'
+
+SET session wait_timeout=6000;
+
+SHOW SESSION VARIABLES LIKE 'wait_timeout';
+
+
+========================================== mySQL END
+
+
+
+
+
+
+
+========================================== nodemon error S
+
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+========================================== nodemon error E
+
+
+
+================================================================
+GET ALL COUMN NAME
+
+SELECT `COLUMN_NAME` 
+FROM `INFORMATION_SCHEMA`.`COLUMNS` 
+WHERE 
+     `TABLE_NAME`='AUTHORITY';
+
+
+
+https://jsonplaceholder.typicode.com/
+
+
+
+
+
+==================================================================== ALL Redis S
+Installing Redis on Windows is surprisingly easy!
+
+Here's how to do it:
+
+Go to the releases page of the Redis for Windows repo: https://github.com/MicrosoftArchive/redis/releases
+Download the 'Redis-x64-xxx.zip' file.  You can use any version.  Make sure you do not download the 'source code' zip.
+Unzip the file
+In the newly created folder, run redis-server.exe 
+You should see a window appear that says redis is running on port 6379.  
+
+==================================================================== ALL Redis E
+
+
+==================================================================== ALL async S
+npm install async
+
+https://stackoverflow.com/questions/40020695/node-js-mysql-query-in-a-for-loop
+https://caolan.github.io/async/v3/
+https://github.com/caolan/async/blob/v1.5.2/README.md
+
+https://zellwk.com/blog/async-await-express/
+==================================================================== ALL async E
+
+
+
+
+
+
+
+https://stackoverflow.com/questions/5959043/how-to-insert-a-file-in-mysql-database
+
+File size by MySQL type:
+
+TINYBLOB 255 bytes = 0.000255 Mb
+BLOB 65535 bytes = 0.0655 Mb
+MEDIUMBLOB 16777215 bytes = 16.78 Mb
+LONGBLOB 4294967295 bytes = 4294.97 Mb = 4.295 Gb
+
+
+
+
+
+
+
+
+
+  http://knexjs.org/
+  
+
+SELECT TU.user_id, U.displayName, TDTL.folder_id ,
+       F.id title_id, F.title_text ,TG.id grp_id, TG.group_name, 
+       TU.task_grp_detail_id , TDTL.task_grp_dtl_name , TU.create_datetime, MENU.id menu_id
+			 
+FROM TASK_GROUP_DETAIL_USER TU
+	LEFT JOIN TASK_GROUP_DETAIL TDTL ON TDTL.id = TU.task_grp_detail_id
+	LEFT JOIN TASK_GROUP TG ON TG.id = TDTL.group_id
+	LEFT JOIN FOLDER_TITLE F ON F.id = TG.title_id
+	LEFT JOIN USER U ON U.id = TU.user_id
+	LEFT JOIN MENU ON MENU.id = U.id
+
+WHERE TU.user_id = '117977997905031416912'
+ORDER BY TU.create_datetime DESC

@@ -1,0 +1,177 @@
+{
+    // Place your snippets for javascript here. Each snippet is defined under a snippet name and has a prefix, body and 
+    // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+    // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+    // same ids are connected.
+    // Example:
+    "1 console log": {
+        "prefix": "Ex console log",
+        "body": [
+            "console.log(``)"
+        ],
+        "description": "console log"
+    },
+    "2 Function POST Ajax": {
+        "prefix": "Ex Function POST Ajax",
+        "body": [
+            " $('#btnSignIn').click(function(e) {",
+            "",
+            "        // Get data from textbox",
+            "        var user_id_user = $('#userid').val().trim();",
+            "        var user_password = $('#password').val().trim();",
+            "",
+            "        var dataUser = {",
+            "            userid: user_id_user,",
+            "            password: user_password",
+            "        };",
+            "",
+            "        $.ajax({",
+            "            type: 'POST',",
+            "            data: JSON.stringify(dataUser),",
+            "            contentType: 'application/json',",
+            "            url: GV_Server_Address + '/signin',",
+            "            success: function(data) {",
+            "                if (data.errno != undefined) {",
+            "                    // handle ERROR",
+            "                } else {",
+            "                    // handle SUCCESS",
+            "                }",
+            "            },",
+            "            error: function(err) {",
+            "",
+            "            }",
+            "        });",
+            "    });",
+
+        ],
+        "description": "POST AJAX"
+    },
+
+    "3 For Each": {
+        "prefix": "ExForEach",
+        "body": [
+            "$.each(listData, function(index, data) {",
+            "var id = data.id; ",
+            "});",
+        ],
+        "description": "For Each"
+    },
+
+    "4 Function GET axios": {
+        "prefix": "Ex Function GET axios",
+        "body": [
+            "    function FuncGETAxios(input) {",
+            "        var data = {",
+            "            id: input,",
+            "        };",
+            "        // get data",
+            "        // SERVER USING : let dataXXX = JSON.parse(req.query.data);",
+            "        // SERVER USING : let id = dataXXX.id;",
+            "        axios",
+            "            .get(GV_Server_Address + '/getalluserbytaskid', {",
+            "                params: {",
+            "                    data,",
+            "                },",
+            "            })",
+            "            .then(function(response) {",
+            "                if (response.data.errno != undefined) {",
+            "                    // ERR",
+            "                } else {",
+            "                    // SUCCESS",
+            "                } // }// end else SUCCESS",
+            "            })",
+            "            .catch(function(error) {",
+            "                console.log(error);",
+            "            });",
+            "    }",
+        ],
+        "description": "GET axios"
+    },
+
+    "5 Ex Function POST axios": {
+        "prefix": "Ex Function POST axios",
+        "body": [
+            "    function FuncPOSTAxios(input) {",
+            "        var data = {",
+            "            id: input,",
+            "        };",
+            "        // post data",
+            "        // in SERVER get data USING :  req.body.data",
+            "        axios.post(GV_Server_Address + '/user', {",
+            "                data: data,",
+            "            })",
+            "            .then(function(response) {",
+            "                if (response.data.errno != undefined) {",
+            "                    // ERR",
+            "                } else {",
+            "                    // SUCCESS",
+            "                } // }// end else SUCCESS",
+            "            })",
+            "            .catch(function(error) {",
+            "                console.log(error);",
+            "            });",
+            "    }",
+
+        ],
+        "description": "POST axios"
+    },
+
+    "6 Set html": {
+        "prefix": "Ex Set html",
+        "body": [
+            "$('#txtShowSelectedNote').text(textP);",
+
+
+        ],
+        "description": "POST axios"
+    },
+    "7 event button click": {
+        "prefix": "Ex event button click",
+        "body": [
+            "$('#btn_signOut').click(function(e) {",
+            "",
+            "});",
+        ],
+        "description": "POST axios"
+    },
+
+    "8 get txt text": {
+        "prefix": "Ex get txt text",
+        "body": [
+            "$('#txtID').val()",
+        ],
+        "description": "get txt text"
+    },
+
+    "9 set txt text": {
+        "prefix": "Ex set txt text",
+        "body": [
+            "$('#txtID').val('')",
+        ],
+        "description": "set txt text"
+    },
+
+    "10 check box set CHECKED": {
+        "prefix": "Ex check box set CHECKED",
+        "body": [
+            "$('#idCheckBox').prop('checked', true);",
+        ],
+        "description": "check box set CHECKED"
+    },
+    "11 setInterval": {
+        "prefix": "Ex setInterval",
+        "body": [
+            "var setsetInterval = setInterval(function() {",
+            "if (length <= 0) {",
+            " // DO NOT CODE HERE",
+            "} else {",
+            "clearInterval(setsetInterval);",
+            "// code when you need",
+            "}",
+            "}, 500)",
+        ],
+        "description": "setInterval"
+    },
+
+
+}
