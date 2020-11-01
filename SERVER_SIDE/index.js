@@ -129,7 +129,7 @@ if (GV_auth_google == '/auth/login/googleLocal') {
 
     //linkToHost = `https://qmloffice.github.io/qmloffice`;
     linkToHost = `http://qmloffice.site`;
-	port111 = process.env.PORT | 3000;
+    port111 = process.env.PORT | 3000;
     app.listen(port111, "0.0.0.0", () => {
         console.log(`APP listening on port  ${process.env.PORT}!`);
     });
@@ -2205,6 +2205,8 @@ function WakeUpMySQL() {
             if (error) {
                 clearInterval(setsetInterval11);
                 console.log("call WakeUpMySQL()....");
+                handleDisconnect();
+
                 WakeUpMySQL();
             } else {
 
