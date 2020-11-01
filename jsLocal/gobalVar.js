@@ -19,14 +19,12 @@ if (run_on_env == 'local') {
     GV_auth_google = '/auth/login/googleLocal';
 } else {
     // server
-    //GV_link_detail = "/WEB113/detail.html";
-    //GV_link_page404 = "/WEB113/page404.html";
-    // GV_Server_Address = "https://enigmatic-earth-35060.herokuapp.com"; //  account heroku : lqvinh.hsu@gmail.com
-    GV_Server_Address = "https://officeonlinetest.herokuapp.com"; // account heroku : qmloffice.babymommycare@gmail.com
-    GV_link_index_page = '/qmloffice/';
-    GV_link_userManager = "/qmloffice/usermanager.html";
-    GV_link_detail = "/qmloffice/detail.html";
-    GV_link_page404 = "/qmloffice/page404.html";
+    //GV_Server_Address = "https://officeonlinetest.herokuapp.com"; // account heroku : qmloffice.babymommycare@gmail.com
+    GV_Server_Address = "http://qmloffice.site:3000";
+    GV_link_index_page = '/';
+    GV_link_userManager = "/usermanager.html";
+    GV_link_detail = "/detail.html";
+    GV_link_page404 = "/page404.html";
     GV_auth_google = '/auth/login/googleServer';
 }
 
@@ -38,8 +36,6 @@ var GV_CK_SIGNIN_SUCCESS = "asdfjslfjklsadfjklsdj235492348iofujskdjf";
 // TASK_GRP_TASK_DETAIL 
 var GV_STORE_TASK_GRP_TASK_DETAIL = {};
 var GV_KEY_STORE_TASK_GRP_TASK_DETAIL = "234234aasd24sdas2sfssdf33asssd4343";
-
-
 
 var GV_SIGN_IN_1_TIME = "1t";
 var GV_SIGN_IN_EXP = "exp";
@@ -292,7 +288,7 @@ function GF_GetDateFrom_SysDate(formatType) {
     // dd-mm-yyyy hh:mm:se
     else if (formatType == 2) {
         text = dd + "-" + MM + "-" + yyyy + " " + hh + ":" + mm + ":" + se;
-    } else if (formatType == 3) {} else if (formatType == 4) {}
+    } else if (formatType == 3) { } else if (formatType == 4) { }
 
     return text;
 }
@@ -435,7 +431,7 @@ function GF_GetLinkImgForIconFile(fileName) {
     return iconLinkType;
 }
 
-$.fn.GF_focusEndDivEditable = function() {
+$.fn.GF_focusEndDivEditable = function () {
     $(this).focus();
     var tmp = $('<span />').appendTo($(this)),
         node = tmp.get(0),
@@ -468,7 +464,7 @@ function GF_CheckAccGoogleAvaibleNow(accesstoken1) {
                 data1,
             },
         })
-        .then(function(response) {
+        .then(function (response) {
             if (response.errno != undefined) {
                 // ERR
                 location.href = GV_Server_Address + GV_auth_google;
@@ -481,7 +477,7 @@ function GF_CheckAccGoogleAvaibleNow(accesstoken1) {
                 }
             } // }// end else SUCCESS
         })
-        .catch(function(error) {
+        .catch(function (error) {
             location.href = GV_Server_Address + GV_auth_google;
         });
 }
