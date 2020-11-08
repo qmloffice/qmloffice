@@ -180,7 +180,7 @@ passport.use(
         },
         (request, accessToken, refreshToken, profile, done) => {
             console.log(`passport.use(new GoogleStrategy()`);
-            console.log(refreshToken);
+            //console.log(refreshToken);
             //save data in session
             user = {
                 refreshToken: refreshToken,
@@ -257,9 +257,6 @@ app.get("/auth/google/redirect", passport.authenticate("google"), async function
         } else {
             var count1 = 0;
             console.log(`results for : /auth/google/redirect`);
-            // console.log(results);
-            //console.log(`results`);
-
 
             if (results.length > 0) {
                 count1 = Object.keys(results[0]).length;
@@ -451,7 +448,7 @@ app.get("/insert", function (req, res) {
         if (err) {
             throw err;
         }
-        console.log(result);
+        //console.log(result);
         res.send("INSERT OK !!");
     });
 });
@@ -558,7 +555,7 @@ app.post("/insertauthority", function (req, res) {
         fields
     ) {
         if (error) {
-            console.log("throw");
+            console.log("throw /insertauthority");
         }
 
         var count1 = Object.keys(results[0]).length;
@@ -581,7 +578,7 @@ app.post("/insertauthority", function (req, res) {
             let query = connection.query(sql, test_data, (err, result) => {
                 if (err) {
                     console.log("INSERT INTO AUTHORITY err:");
-                    console.log(err);
+
                     res.send(err);
                 } else {
                     console.log("INSERT INTO AUTHORITY result:");
@@ -633,21 +630,6 @@ app.post("/updatemenuafteraction", function (req, res) {
         }
     });
 }); // end updatemenuafteraction
-
-var timeWUHeroku = 20 * 60 * 1000; // 20 minute
-var reqTimer = setTimeout(function wakeUp() {
-    axios
-        .get("https://enigmatic-earth-35060.herokuapp.com")
-        .then(function (response) {
-            console.log("this is for wake up HEROKU HOST--Success");
-        })
-        .catch(function (error) {
-            console.log("this is for wake up HEROKU HOST--Faild");
-        });
-
-    return (reqTimer = setTimeout(wakeUp, timeWUHeroku));
-}, timeWUHeroku);
-
 
 
 app.post("/signin", function (req, res) {
@@ -767,7 +749,6 @@ app.post("/deleteUserOutSystem", async function (req, res) {
 app.post("/updateAuthorityUser", async function (req, res) {
 
     var user = req.body.data;
-    console.log(user);
 
     let sql = `
     UPDATE USER SET updatedate = ${user.updatedate} ,
@@ -802,7 +783,7 @@ app.get("/get_1_user_info_by_email", function (req, res) {
     let query = connection.query(sql, function (error, results, fields) {
         if (error) {
             error1 = 'get_1_user_info_by_email ERR'
-            console.log(error);
+
             res.send({
                 errno: error1,
             });
@@ -866,7 +847,7 @@ app.get("/GetAllFileFromDB", function (req, res) {
     `;
 
     let query = connection.query(sql, function (error, results, fields) {
-        console.log(error);
+
         if (error) {
             var errno = "vs /GetAllFileFromDB ERR ";
             res.send({
@@ -1026,7 +1007,7 @@ app.post("/UpdateDescriptionGeneralForTaskGrpDetail", async function (
         updatedate: data.updatedate,
         updatetime: data.updatetime,
     };
-    console.log(test_data);
+
     let sql = `UPDATE TASK_GROUP_DETAIL SET description_general='${data.description_general}', 
                      updatedate=${data.updatedate}, 
                      updatetime=${data.updatetime} 
@@ -1066,7 +1047,7 @@ app.get("/getTaskGrpAndTaskDetailWhenClickOnTitle", async function (req, res) {
                  WHERE TG.folder_id = '${data.folder_id}' AND  TG.title_id='${data.title_id}' AND (U.delete_system is null OR U.delete_system <> '1')
                  ORDER BY TGD.group_id , TGD.id
     `;
-    console.log(sql);
+
 
     let query = await connection.query(sql, [2, 1], function (error, results, fields) {
         if (error) {
@@ -1108,7 +1089,7 @@ app.post("/upload", async function (req, res) {
         });
     }
 
-    console.log(req.files.userfile.data);
+
     //console.log('length', req.files.userfile.data.toString());
 
     let fileBuffer = Buffer.from(req.files.userfile.data);
@@ -1185,7 +1166,7 @@ app.post("/insertTitle", async function (req, res) {
     console.log("insertTitle");
 
     let data = req.body.data;
-    console.log(data);
+
 
     let test_data = {
         id: data.id,
@@ -1196,7 +1177,7 @@ app.post("/insertTitle", async function (req, res) {
         updatetime: data.updatetime,
         create_datetime: data.create_datetime,
     };
-    console.log(test_data);
+
     let sql = "INSERT INTO FOLDER_TITLE SET ?";
     let query = await connection.query(sql, test_data, (err, result) => {
         if (err) {
@@ -1506,11 +1487,9 @@ app.post("/uploadFile2", function (req, res) {
     console.log(`""req START""`);
 
 
-    console.log(req.files.userfile);
     var accesstoken = req.body.accesstoken;
     var flag_multiFlag = req.body.flag_multiFlag;
 
-    console.log(accesstoken);
     console.log(`""req END""`);
 
     const oauth2Client = new google.auth.OAuth2();
@@ -1555,7 +1534,7 @@ app.post("/uploadFile2", function (req, res) {
 
                 mes = `data.status upFile OK 200: [${file_name}][${file_size}_BYTE]`;
                 console.log(mes);
-                console.log(data.data);
+
 
                 res.send({
                     cnt,
@@ -1610,7 +1589,7 @@ app.post("/insertFileToDB", function (req, res) {
     `;
     var list_val = '';
     var cnt = 0;
-    console.log(req.body.dataFile.data);
+
 
     var cmtID = req.body.dataFile.data[0].cmt_id;
     for (var file of req.body.dataFile.data) {
@@ -1647,10 +1626,7 @@ app.post("/insertFileToDB", function (req, res) {
 app.get("/errweb/:errcode", async function (req, res) {
 
     let errcode = req.params.errcode;
-    console.log(`errweb : ${errcode}`);
-
     let dataXXX = JSON.parse(req.query.data);
-    console.log(dataXXX);
 
     //const query22 = querystring.stringify({ errcode: errcode });
     // res.redirect(linkToHost + '/page404/?' + query22);
@@ -1765,7 +1741,6 @@ app.post("/InsertCmtDetailForEmailMaster_InsertNotifytoCmtDtl", async function (
 
 // using axios.post
 app.post("/updateListUserInDetail", async function (req, res) {
-    console.log(req.body.data.data);
 
     var cntUpd = 0;
     for (var user of req.body.data.data) {
@@ -1898,11 +1873,10 @@ app.get("/get_Notify_By_TaskDtlID_And_userLogin", async function (req, res) {
         WHERE CMT.task_grp_detail_id IN (${data.list_task_grp_dtl_id}) AND NOTIFY.notify_to_user_id = '${data.user_login_id}'
             ORDER BY CMT.task_grp_detail_id,CMT.id, NOTIFY.id
     `;
-    //console.log(`get_Notify_By_TaskDtlID_And_userLogin`);
-    //console.log(sql);
+
 
     let query = await connection.query(sql, function (error, results, fields) {
-        //console.log(error);
+
         if (error) {
             var errno = "get_Notify_By_TaskDtlID_And_userLogin ERR ";
             res.send({
@@ -1920,7 +1894,6 @@ app.get("/get_Notify_By_TaskDtlID_And_userLogin", async function (req, res) {
 app.post("/DeleteNotifyByID", async function (req, res) {
     var data = req.body.data;
     let sql = `DELETE FROM TASK_GROUP_DETAIL_USER_CMT_NOTIFY WHERE id='${data.id}';`;
-    //console.log(sql)
     let query = await connection.query(sql, data, (err, result) => {
         if (err) {
             res.send({
@@ -2023,7 +1996,7 @@ app.post("/test_file_admin", async function (req, res_to) {
                 permissions.push(obj);
             }
             console.log(permissions.length);
-            console.log(permissions);
+
             var permissionsCheckList = [];
 
             GivePermissionToFolder(-1, drive, permissions, permissionsCheckList, res_to);
@@ -2045,7 +2018,7 @@ app.post("/test_file_admin", async function (req, res_to) {
     driveResponse2.then(data => {
 
         if (data.status == 200) {
-            console.log(data.data);
+
             mes = `data.status create Foleder OK: 200 [${data.data.name}]`;
 
             var permission = {
@@ -2094,7 +2067,7 @@ function GivePermissionToFolder(sum, drive, permissions, permissionsCheckList, r
 
         if (permissionsCheckList.length > 0) {
             console.log(`FINISHED!! has ${permissionsCheckList.length} objects below :`);
-            console.log(permissionsCheckList);
+
             var arrEmailString = '';
             var cnt = 0;
             for (var per of permissionsCheckList) {
@@ -2108,7 +2081,7 @@ function GivePermissionToFolder(sum, drive, permissions, permissionsCheckList, r
                     UPDATE USER SET is_share_folder_gg = '1'
                     WHERE email in (${arrEmailString})`;
 
-            console.log(sql);
+
 
             let query = connection.query(sql, function (error, results, fields) {
 
@@ -2131,14 +2104,14 @@ function GivePermissionToFolder(sum, drive, permissions, permissionsCheckList, r
         permissionsCheckList = [];
     }
 
-    console.log(permissions);
+
     // Using the NPM module 'async'
     async.eachSeries(permissions, function (permission, permissionCallback) {
 
         sum++;
         console.log(`item index: ${sum}`);
         permission = permissions[sum];
-        console.log(permission);
+
 
         drive.permissions.create({
             resource: permission,
