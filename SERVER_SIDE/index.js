@@ -2177,17 +2177,17 @@ function WakeUpMySQL() {
 
             if (error) {
                 clearInterval(setsetInterval11);
-                console.log("call WakeUpMySQL()....");
+                console.log(`WAKE UP MYSQL [status FAILD]!!!! AT ${GetSysDate()} - ${GetSysTime()} `);
+                console.log('WE WakeUpMySQL() again !!');
                 handleDisconnect();
 
                 WakeUpMySQL();
             } else {
 
-                console.log("WAKE UP MYSQL [status OK]!!!!");
+                console.log(`WAKE UP MYSQL [status OK]!!!!AT ${GetSysDate()} - ${GetSysTime()} `);
                 console.log(results[0]);
             }
         });
 
     }, 50000)
-
 }
